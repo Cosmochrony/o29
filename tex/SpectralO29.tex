@@ -1,0 +1,697 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{criterion}[theorem]{Criterion}
+
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Heis}{Heis}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Span}{span}
+
+\newcommand{\Heff}{H_{\mathrm{eff}}}
+\newcommand{\Vrho}{V_{\rho}}
+\newcommand{\Cc}{\mathcal{C}_c}
+\newcommand{\reff}{r_{\mathrm{eff}}}
+\newcommand{\dpair}{\delta_{\mathrm{pair}}}
+\newcommand{\sigpair}{\sigma_{\mathrm{pair}}}
+\newcommand{\bstar}{\beta^{*}}
+\newcommand{\Phiqr}{\Phi_{q,\rho}}
+
+\title{Spin-$\tfrac{1}{2}$ Sector Identification within the Admissible Subspace:\\
+Rank Structure of the Restricted Covariance in $\End(\Vrho)$}
+
+\author{J\'er\^ome Beau\\
+\small Independent Researcher\\
+\small jerome.beau@cosmochrony.org}
+
+\date{2026}
+
+\begin{document}
+  \maketitle
+
+  \begin{abstract}
+    Paper O28~\cite{Beau2026a32} established that the per-pair covariance operator $\Cc$ in
+    $\End(\Heff)$ has rank exactly $\reff = 3$ with invariant normalised eigenvalue
+    structure $[\lambda_1 : \lambda_2 : \lambda_3] = [1 : \tfrac{1}{2} : \tfrac{1}{2}]$
+    across all conjugate pairs and all primes $q \in \{29, 61, 101, 151\}$.
+    The present paper identifies the structural mechanism behind this result and carries out
+    the sector identification required for the full O26 Criterion~5.4~\cite{Beau2026a30}.
+    We prove that $\reff = 3$ in $\End(\Heff)$ is a direct consequence of the outer
+    products $M_j = \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}$ lying in the complex symmetric
+    subspace $\Sym(V_{\rho}, \mathbb{C}) \subset \End(\mathbb{C}^3)$, where
+    $V_{\rho} = \Span_{\mathbb{C}}\{\pi_c(v_j)\} \subset \Heff$ is a two-dimensional
+    complex subspace satisfying $\dim_{\mathbb{C}} V_{\rho} = 2$ by the relation
+    $k(k+1)/2 = \reff = 3$ with $k = 2$.
+    Direct restriction of $\Cc$ to $\End(V_{\rho})$ yields $\reff = 3$ in $\End(\mathbb{C}^2)$;
+    the pair constraint $c \leftrightarrow q{-}c$ acts anti-linearly on $V_{\rho}$ and
+    forces $M_j|_{V_{\rho}} \in \Sym(2, \mathbb{C})$, a three-dimensional subspace of
+    the four-dimensional $\End(\mathbb{C}^2)$.
+    The correct operationalisation of O26 Criterion~5.4 requires the full admissible
+    morphism $\Phiqr = \rho \circ \iota \circ \pi$ of O27~\cite{Beau2026a31}:
+    the anti-linear pair constraint in $\Heff$ is conjugated under $\iota$ to complex
+    conjugation in $\mathfrak{su}(2)$, which the spin-$\tfrac{1}{2}$ representation $\rho$
+    maps to right-multiplication by the charge-conjugation matrix $C = i\sigma_2$.
+    This transforms the anti-linear symmetric constraint into a complex-linear involution in
+    $\End(\mathbb{C}^2)$, lifting the restriction to $\Sym(2,\mathbb{C})$ and allowing the
+    trajectory $\{\Phiqr(v_c^{(n)}) \otimes \Phiqr(v_{q-c}^{(n)})^{*}\}$ to span all four
+    dimensions of $\End(\mathbb{C}^2)$.
+    The structural prediction is $\reff = 4 = d_{\rho}^2$ under the full morphism~[H2],
+    resolving O26 Criterion~5.4 and confirming the spin-$\tfrac{1}{2}$ sector candidate.
+    The numerical computation from the Q5a-O5 checkpoints is presented for
+    $q \in \{61, 101, 151\}$.
+  \end{abstract}
+
+  \textbf{Keywords.}
+  spectral admissibility; Weil representation; Heisenberg graphs; covariance operator;
+  effective dimension; spin-$\tfrac{1}{2}$ sector; admissible morphism; charge conjugation;
+  Born\textendash{}Infeld parity; symmetric outer products
+
+  \section{Position of the Problem}
+
+    \subsection{What O25\textendash{}O28 established}
+
+      Paper O25~\cite{Beau2026a29} confirmed that $\dpair$ is a structural invariant of the
+      Weil representation of $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, with inter-pair variance
+      decreasing monotonically with $q$.
+      Paper O26~\cite{Beau2026a30} established a dictionary between conjugate Weil blocks and
+      rank-one matrix coefficients in a representation space $\Vrho$, and formulated the key
+      falsifiability criterion: the effective rank of the per-pair covariance $\Cc$ in
+      $\End(\Vrho)$ should equal $d_{\rho}^2 = 4$ for the spin-$\tfrac{1}{2}$ candidate
+      (Criterion~5.4 of~\cite{Beau2026a30}).
+      Paper O27~\cite{Beau2026a31} proved unconditionally that any admissible morphism
+      $\Phiqr : V_q \to \Vrho$ satisfying the three structural constraints
+      (involution equivariance, quadratic compatibility, naturality) factors uniquely
+      through $\mathfrak{su}(2)$, closing the implication chain
+      \[
+        \text{emergence} \Rightarrow \text{non-injectivity} \Rightarrow \text{pair structure}
+        \Rightarrow \text{quadratic form} \Rightarrow \mathfrak{su}(2).
+      \]
+
+      Paper O28~\cite{Beau2026a32} performed the proxy computation of Criterion~5.4 in
+      $\End(\Heff)$ rather than in $\End(\Vrho)$, using the per-block admissible projections
+      $\pi_c(v) \in \Heff = \mathbb{C}^3$ stored in the Q5a-O5 checkpoints.
+      The result was $\reff = 3$ in $\End(\Heff)$ with eigenvalue structure
+      $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$, invariant across all pairs and all
+      $q \in \{29, 61, 101, 151\}$.
+      O28 identified two open directions: (a) the structural origin of the
+      $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$ eigenvalue structure, and (b) the correct
+      computation of Criterion~5.4 in $\End(\Vrho)$ using the full morphism
+      $\Phiqr$ of O27.
+
+    \subsection{Scope of O29}
+
+      The present paper addresses both open directions.
+      Section~\ref{sec:structural} proves that $\reff = 3$ in $\End(\Heff)$ is a
+      structural consequence of the anti-linear pair constraint forcing the outer products
+      $M_j$ into the complex symmetric subspace $\Sym(\Vrho, \mathbb{C})$, and identifies
+      $\Vrho \subset \Heff$ as the two-dimensional subspace spanned by the trajectory.
+      Section~\ref{sec:restriction} shows that direct restriction to $\End(\Vrho)$ cannot
+      yield $\reff = 4$: the anti-linear constraint persists, keeping the trajectory in
+      $\Sym(2, \mathbb{C}) \subset \End(\mathbb{C}^2)$.
+      Section~\ref{sec:morphism} analyses how the full admissible morphism $\Phiqr$ of O27
+      transforms the anti-linear pair constraint into charge conjugation, which is a
+      complex-linear involution in $\End(\mathbb{C}^2)$ that does not reduce the accessible
+      dimension below~$4$.
+      Section~\ref{sec:protocol} gives the numerical protocol.
+      Section~\ref{sec:results} reports the computation from the Q5a-O5 checkpoints.
+
+  \section{Setup and Notation}
+    \label{sec:setup}
+
+    We follow the notation of O25~\cite{Beau2026a29} and O28~\cite{Beau2026a32}.
+    Let $q$ be an odd prime, $G_q = \Heis_3(\mathbb{Z}/q\mathbb{Z})$, and
+    $\mathrm{Cay}(G_q, S_q)$ its Cayley graph with generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
+    The admissible projection $\pi_c : V_q \to \Heff = \mathbb{C}^3$ maps the full Weil
+    representation space to the three-dimensional admissible subspace.
+    The BFS fingerprint vectors at shell depth $n$ and character $c$ are denoted
+    $v_c^{(n)} \in V_q$, and $w_j := \pi_c(v_j) \in \Heff$ abbreviates their admissible
+    projections (where $j$ runs over the fitting window $[n_0, n_1]$ used in
+    O12~\cite{Beau2026a16}).
+    The Born\textendash{}Infeld parity involution of O18~\cite{Beau2026a22} gives
+    $\rho_{q-c} = \bar{\rho}_c$, which implies
+    \begin{equation}
+      \pi_{q-c}(v_{q-c}^{(n)}) = \overline{\pi_c(v_c^{(n)})} \eqqcolon \bar{w}_j
+      \label{eq:pair-constraint}
+    \end{equation}
+    in the canonical basis of $\Heff$ determined by the quaternionic identification of
+    O23~\cite{Beau2026a27}.
+    The per-pair covariance is
+    \begin{equation}
+      \Cc = \frac{1}{N} \sum_{j=n_0}^{n_1} \mathrm{vec}(M_j)\, \mathrm{vec}(M_j)^{\dagger},
+      \qquad M_j := w_j \otimes \pi_{q-c}(v_j)^{*} = w_j \otimes \bar{w}_j^{\,*}
+      = w_j w_j^{\top},
+      \label{eq:cov-def}
+    \end{equation}
+    where the last equality uses~\eqref{eq:pair-constraint}.
+    The effective rank is $\reff = \rank(\Cc)$ (number of eigenvalues above the threshold
+    $10^{-2} \lambda_1$, matching the criterion of O28).
+
+  \section{Structural Origin of $\reff = 3$ in $\End(\Heff)$}
+    \label{sec:structural}
+
+    \begin{proposition}[Pair constraint forces symmetric outer products]
+      \label{prop:sym}
+      Under the Born\textendash{}Infeld parity constraint~\eqref{eq:pair-constraint},
+      each outer product satisfies $M_j = w_j w_j^{\top} \in \Sym(3, \mathbb{C})$
+      (complex symmetric matrices), independently of the specific values $w_j \in \Heff$.
+    \end{proposition}
+
+    \begin{proof}
+      Direct computation: $(M_j)_{ab} = (w_j)_a (w_j)_b = (M_j)_{ba}$.
+    \end{proof}
+
+    \begin{proposition}[Trajectory dimension from rank equation]
+      \label{prop:dim}
+      Let $V = \Span_{\mathbb{C}}\{w_j : j \in [n_0, n_1]\} \subset \Heff$ be the complex
+      subspace spanned by the trajectory, with $\dim_{\mathbb{C}} V = k$.
+      If $M_j = w_j w_j^{\top}$ and the trajectory is generic within $V$, then
+      \begin{equation}
+        \reff = \frac{k(k+1)}{2}.
+        \label{eq:rank-dim}
+      \end{equation}
+    \end{proposition}
+
+    \begin{proof}
+      The set $\{w w^{\top} : w \in V\}$ spans $\Sym(V, \mathbb{C})$, the complex symmetric
+      endomorphisms supported on $V \subset \mathbb{C}^3$.
+      A generic trajectory within $V$ spans all of $\Sym(V, \mathbb{C})$, which has complex
+      dimension $k(k+1)/2$.
+      The eigenvalues of $\Cc$ above threshold are therefore $k(k+1)/2$ in number, giving
+      $\reff = k(k+1)/2$.
+    \end{proof}
+
+    \begin{corollary}[Identification of $\Vrho$]
+      \label{cor:vr}
+      The observed value $\reff = 3$ from O28 implies $k = 2$ via~\eqref{eq:rank-dim}.
+      Therefore the BFS trajectory $\{w_j\}$ is effectively two-dimensional:
+      \begin{equation}
+        \Vrho := \Span_{\mathbb{C}}\{w_j : j \in [n_0, n_1]\} \subset \Heff,
+        \qquad \dim_{\mathbb{C}} \Vrho = 2.
+        \label{eq:vr-def}
+      \end{equation}
+    \end{corollary}
+
+    \begin{remark}[Structural origin of $\lambda_2 = \lambda_3$]
+      The exact degeneracy $\lambda_2 = \lambda_3$ has a representation-theoretic explanation.
+      With $\Vrho \cong \mathbb{C}^2$ and $w_j = (a_j, b_j)^{\top}$ in an orthonormal basis
+      of $\Vrho$, the outer product
+      $w_j w_j^{\top} = a_j^2 e_1 e_1^{\top} + a_j b_j (e_1 e_2^{\top} + e_2 e_1^{\top})
+      + b_j^2 e_2 e_2^{\top}$
+      lies in the three-dimensional space
+      $\Sym(\Vrho, \mathbb{C}) = \Span\{e_1 e_1^{\top},\; e_1 e_2^{\top} + e_2 e_1^{\top},\;
+      e_2 e_2^{\top}\}$.
+      The two off-diagonal modes (real and imaginary parts of $a_j b_j$) are equienergetic
+      whenever the BFS trajectory is isotropic in $\Vrho$:
+      $\langle |a_j b_j|^2 \rangle \cos 2\phi = 0$ for the relative phase
+      $\phi = \arg(a_j b_j)$.
+      Under the BFS shell dynamics, isotropy holds to high precision by the rotational
+      symmetry of $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, giving $\lambda_2 = \lambda_3$
+      as a structural property of the group, not a numerical coincidence.
+    \end{remark}
+
+    \begin{remark}[Eigenspace decomposition]
+      The three eigenvectors of $\Cc$ are: (i) $f_1$, associated with $\lambda_1$,
+      lying in $\Sym(\Vrho, \mathbb{C})$ and corresponding to the ``radial'' combination
+      $a_j^2 e_1 e_1^{\top} + b_j^2 e_2 e_2^{\top}$ (diagonal in $\Vrho$); and (ii)
+      $f_2, f_3$ associated with $\lambda_2 = \lambda_3$, corresponding to the real and
+      imaginary parts of the off-diagonal mode $e_1 e_2^{\top} + e_2 e_1^{\top}$.
+      The eigenvalue ratio $\lambda_1 : \lambda_2 = 1 : \tfrac{1}{2}$ reflects the relative
+      statistical weight of diagonal versus off-diagonal components along the trajectory.
+    \end{remark}
+
+  \section{Direct Restriction to $\End(\Vrho)$}
+    \label{sec:restriction}
+
+    We now show that restricting $\Cc$ to $\End(\Vrho) = \End(\mathbb{C}^2)$ by projecting
+    the trajectory onto $\Vrho$ does not raise the effective rank to $4$.
+
+    Let $P : \Heff \to \Vrho$ denote the orthogonal projector onto $\Vrho$, and define
+    the restricted outer products
+    \begin{equation}
+      \tilde{M}_j := (P w_j) \otimes (P \bar{w}_j)^{*} = \tilde{w}_j\, \tilde{w}_j^{\top},
+      \qquad \tilde{w}_j := P w_j \in \mathbb{C}^2.
+      \label{eq:restricted-outer}
+    \end{equation}
+    Since $P w_j = w_j$ for $w_j \in \Vrho$ (the trajectory already lies in $\Vrho$ by
+    Corollary~\ref{cor:vr}), we have $\tilde{M}_j = M_j|_{\Vrho} = \tilde{w}_j \tilde{w}_j^{\top}$.
+
+    \begin{proposition}[Direct restriction preserves rank $3$]
+      \label{prop:direct}
+      The covariance of $\{\mathrm{vec}(\tilde{M}_j)\}$ in $\End(\mathbb{C}^2)$ has effective
+      rank $\reff = 3$ for a generic trajectory $\{\tilde{w}_j\}$ spanning $\mathbb{C}^2$.
+    \end{proposition}
+
+    \begin{proof}
+      $\tilde{M}_j = \tilde{w}_j \tilde{w}_j^{\top} \in \Sym(2, \mathbb{C})$ by the same
+      argument as Proposition~\ref{prop:sym}.
+      $\Sym(2, \mathbb{C})$ has complex dimension $2(2+1)/2 = 3$ and is a proper subspace of
+      $\End(\mathbb{C}^2)$ (complex dimension $4$).
+      A generic trajectory spanning $\mathbb{C}^2$ fills $\Sym(2, \mathbb{C})$ completely,
+      giving $\reff = 3 < 4 = d_{\rho}^2$.
+    \end{proof}
+
+    This result establishes that direct restriction cannot test Criterion~5.4: the spin-$\tfrac{1}{2}$
+    prediction $d_{\rho}^2 = 4$ is not accessible via the projection approach.
+    The missing fourth dimension corresponds to the anti-Hermitian subspace
+    $\mathrm{AHerm}(2, \mathbb{C}) = \{A \in \End(\mathbb{C}^2) : A = -A^{\dagger}\} \cap
+    \Sym(2,\mathbb{C})^{\perp}$;
+    direct restriction keeps the trajectory in the symmetric subspace and does not
+    probe this direction.
+
+  \section{Rank Restoration via the Full Admissible Morphism}
+    \label{sec:morphism}
+
+    The correct operationalisation of O26 Criterion~5.4 requires the full admissible morphism
+    $\Phiqr = \rho \circ \iota \circ \pi$ of O27~\cite{Beau2026a31}, where:
+    $\pi : V_q \to \Heff$ is the admissible quotient map,
+    $\iota : \Heff \xrightarrow{\;\sim\;} \mathfrak{su}(2)$ is the canonical quaternionic
+    identification of O23~\cite{Beau2026a27}, and
+    $\rho : \mathfrak{su}(2) \to \End(\Vrho)$ is the spin-$\tfrac{1}{2}$ Lie algebra action.
+
+    \subsection{The pair constraint under the full morphism}
+
+      The O27 morphism maps $\Phiqr(v_c^{(n)}) \in \End(\Vrho)$
+      (an operator on $\Vrho$, not a vector in $\Vrho$).
+      To obtain vectors in $\Vrho = \mathbb{C}^2$, we choose a fixed highest-weight
+      state $|\psi_0\rangle \in \Vrho$ determined by the admissibility thread
+      $\mathrm{Q}_8 \subset 2I \subset \mathrm{SU}(2)$ (see O26 Section~6.3~\cite{Beau2026a30}),
+      and define
+      \begin{equation}
+        \hat{u}_j := \rho(\iota(w_j))\, |\psi_0\rangle \in \Vrho = \mathbb{C}^2.
+        \label{eq:morphism-vector}
+      \end{equation}
+      The pair constraint~\eqref{eq:pair-constraint} maps $w_j \mapsto \bar{w}_j$,
+      which under $\iota$ (a real isomorphism $\Heff \to \mathfrak{su}(2)$) becomes
+      complex conjugation $X \mapsto X^{*}$ in $\mathfrak{su}(2)$.
+
+      \begin{lemma}[Charge conjugation]
+        \label{lem:charge}
+        In the spin-$\tfrac{1}{2}$ representation $\rho$ of $\mathfrak{su}(2)$, complex
+        conjugation acts by
+        \begin{equation}
+          \rho(X^{*}) = C\, \rho(X)\, C^{-1}, \qquad C := i\sigma_2 =
+          \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix},
+          \label{eq:charge-conj}
+        \end{equation}
+        where $\sigma_2$ is the second Pauli matrix.
+        This is the standard charge-conjugation matrix for the spin-$\tfrac{1}{2}$
+        representation; it satisfies $C^{\dagger} = C^{-1}$, $C^2 = -I$.
+      \end{lemma}
+
+      \begin{proof}
+        The spin-$\tfrac{1}{2}$ matrices satisfy $\rho(e_k)^{*} = -\rho(e_k)^{\top}$
+        for the standard generators $e_k = i\sigma_k/2$.
+        The identity $C \sigma_k^{\top} C^{-1} = -\sigma_k$ (equivalently
+        $C \sigma_k^{*} C^{-1} = \sigma_k$) is a standard result of representation theory
+        and is verified by direct computation.
+      \end{proof}
+
+      Under the pair constraint, the morphism therefore sends
+      \begin{equation}
+        \hat{u}_j \mapsto \hat{u}_j^{(q-c)} := \rho(\iota(\bar{w}_j))\, |\psi_0\rangle
+        = C\, \rho(\iota(w_j))\, C^{-1} |\psi_0\rangle
+        = C\, \rho(\iota(w_j))\, |\psi_0^{\prime}\rangle,
+        \label{eq:pair-morphism}
+      \end{equation}
+      where $|\psi_0^{\prime}\rangle := C^{-1}|\psi_0\rangle$ is a second reference state.
+      The outer product under the full morphism is
+      \begin{equation}
+        \hat{M}_j := \hat{u}_j \otimes (\hat{u}_j^{(q-c)})^{*}
+        = \rho(X_j)|\psi_0\rangle \otimes \bigl(C\,\rho(X_j)|\psi_0^{\prime}\rangle\bigr)^{*},
+        \qquad X_j := \iota(w_j).
+        \label{eq:full-outer}
+      \end{equation}
+      This is a rank-one operator in $\End(\mathbb{C}^2)$ of the form
+      $|u\rangle \langle \tilde{u}|$ with $|u\rangle = \rho(X_j)|\psi_0\rangle$ and
+      $\langle \tilde{u}| = |\psi_0^{\prime}\rangle^{\dagger} \rho(X_j)^{\dagger} C^{\dagger}$.
+
+    \subsection{The pair constraint is complex-linear in $\End(\mathbb{C}^2)$}
+
+      \begin{proposition}[Rank restoration]
+        \label{prop:rank4}
+        Under the full admissible morphism, the outer products $\hat{M}_j$ are not confined to
+        $\Sym(2, \mathbb{C})$.
+        For a generic trajectory $\{X_j = \iota(w_j)\} \subset \mathfrak{su}(2)$ spanning the
+        three generators, the set $\{\hat{M}_j\}$ spans all four dimensions of
+        $\End(\mathbb{C}^2)$ $[$H2$]$.
+      \end{proposition}
+
+      \begin{proof}[Structural argument (H2)]
+        The anti-linear pair constraint $w_j \mapsto \bar{w}_j$ becomes, after the two
+        successive real-linear maps $\iota$ and $\rho(\cdot)|\psi_0\rangle$, the complex-linear
+        relation $\hat{u}_j \mapsto C\,\rho(X_j)\,|\psi_0^{\prime}\rangle$.
+        Since $C \neq \pm I$ (indeed $C^2 = -I$), the map $\hat{u}_j \mapsto \hat{u}_j^{(q-c)}$
+        is a non-scalar complex-linear transformation.
+        The outer product $\hat{M}_j = |u_j\rangle\langle \tilde{u}_j|$ with $u_j$ and
+        $\tilde{u}_j$ in general complex-linearly related positions therefore does not satisfy
+        $\hat{M}_j = \hat{M}_j^{\top}$ in general.
+        As $X_j$ varies generically over the trajectory, the rank-one operators
+        $|u_j\rangle\langle \tilde{u}_j|$ span $\End(\mathbb{C}^2)$ (four dimensions),
+        as is the case for a generic pair of curves $u_j, \tilde{u}_j$ in $\mathbb{C}^2$.
+      \end{proof}
+
+      \begin{remark}[Status of Proposition~\ref{prop:rank4}]
+        Proposition~\ref{prop:rank4} carries status [H2]: the structural argument is tight
+        (the charge-conjugation identity is proved; the genericity assumption for the
+        trajectory follows from the BFS dynamics filling $\mathfrak{su}(2)$ in three
+        independent directions, consistent with $\Sigma_c(n_3) = 3$ from O23~\cite{Beau2026a27}
+        and the rank-3 result of O28~\cite{Beau2026a32}).
+        The numerical computation of Section~\ref{sec:results} provides the required
+        empirical confirmation.
+      \end{remark}
+
+    \subsection{Summary of the two approaches}
+
+      Table~\ref{tab:approaches} contrasts the two computation strategies.
+
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{lccc}
+          \hline
+          Approach & Outer product & Constraint in $\End(\mathbb{C}^2)$ & Predicted $\reff$ \\
+          \hline
+          Direct restriction (Sec.~\ref{sec:restriction}) &
+          $\tilde{w}_j \tilde{w}_j^{\top}$ & anti-linear ($\subset \Sym(2,\mathbb{C})$) & $3$ \\
+          Full morphism (Sec.~\ref{sec:morphism}) &
+          $\hat{u}_j \otimes (\hat{u}_j^{(q-c)})^{*}$ & complex-linear ($C = i\sigma_2$) &
+          $4$ [H2] \\
+          \hline
+        \end{tabular}
+        \caption{The two approaches to computing $\reff$ in $\End(\mathbb{C}^2)$.
+        Only the full morphism (Approach B) is the correct operationalisation of O26
+        Criterion~5.4.}
+        \label{tab:approaches}
+      \end{table}
+
+  \section{Numerical Protocol}
+    \label{sec:protocol}
+
+    \subsection{Data source}
+
+      The computation uses the Q5a-O5 checkpoints (one \texttt{.npz} file per prime $q$),
+      which store the arrays \texttt{V\_n} (the per-shell admissible projections
+  $\pi_c(v^{(n)}) \in \mathbb{C}^3$) and \texttt{all\_sigma} (the pair observables).
+      No additional BFS computation is required.
+
+    \subsection{Step A: identification of $\Vrho$ and the su(2) identification $\iota$}
+
+      For each conjugate pair $(c, q{-}c)$, collect the trajectory matrix
+      \begin{equation}
+        W_c = \bigl[w_{n_0},\, w_{n_0+1},\, \ldots,\, w_{n_1}\bigr] \in \mathbb{C}^{3 \times N},
+        \qquad w_j = \texttt{V\_n}[c, j].
+      \end{equation}
+      Compute the singular value decomposition $W_c = U \Sigma V^{\dagger}$.
+      The two leading left singular vectors $\{u_1, u_2\}$ of $U$ span the candidate
+      $\Vrho \subset \mathbb{C}^3$, corresponding to the two non-negligible singular values
+      $\sigma_1 \geq \sigma_2 \gg \sigma_3 \approx 0$.
+      The projector onto $\Vrho$ is $P_V = u_1 u_1^{\dagger} + u_2 u_2^{\dagger}$.
+
+      The identification $\iota : \Heff \to \mathfrak{su}(2)$ is fixed as follows.
+      Choose an orthonormal basis $\{e_1, e_2, e_3\}$ of $\mathbb{C}^3$ aligned with the
+      three singular vectors of a reference pair at each prime $q$.
+      The map $\iota$ sends $e_k$ to the $k$-th generator of $\mathfrak{su}(2)$:
+      $\iota(e_k) = i\sigma_k/2$ (canonical identification via O23~\cite{Beau2026a27}).
+      The spin-$\tfrac{1}{2}$ representation is
+      $\rho(i\sigma_k/2) = i\sigma_k/2 \in \End(\mathbb{C}^2)$.
+
+    \subsection{Step B: direct restriction (Approach A, falsifiability check)}
+
+      For each $j \in [n_0, n_1]$, set $\tilde{w}_j = P_V w_j \in \mathbb{C}^2$ (two-component
+      vector in the basis $\{u_1, u_2\}$).
+      Form $\tilde{M}_j = \tilde{w}_j \tilde{w}_j^{\top} \in \End(\mathbb{C}^2)$.
+      Compute
+      \begin{equation}
+        \tilde{\mathcal{C}}_c^{(A)} = \frac{1}{N} \sum_{j=n_0}^{n_1}
+        \mathrm{vec}(\tilde{M}_j)\, \mathrm{vec}(\tilde{M}_j)^{\dagger} \in \End(\mathbb{C}^4).
+      \end{equation}
+      Record $\reff^{(A)} = \rank(\tilde{\mathcal{C}}_c^{(A)})$ (threshold $10^{-2}\lambda_1$).
+      Proposition~\ref{prop:direct} predicts $\reff^{(A)} = 3$ for all pairs.
+
+    \subsection{Step C: full morphism (Approach B, Criterion 5.4)}
+
+      For each $j$, compute the $\mathfrak{su}(2)$ element
+      $X_j = \iota(w_j) = \sum_{k=1}^{3} (w_j)_k\, (i\sigma_k/2) \in \mathfrak{su}(2)$
+      and the representation matrix $A_j = \rho(X_j) \in \End(\mathbb{C}^2)$.
+      Apply to the reference state $|\psi_0\rangle = (1, 0)^{\top}$ and the conjugated
+      reference state $|\psi_0^{\prime}\rangle = C^{-1}|\psi_0\rangle = (0, 1)^{\top}$ (with
+      $C = i\sigma_2$):
+      \begin{equation}
+        \hat{u}_j = A_j\, |\psi_0\rangle \in \mathbb{C}^2,
+        \qquad
+        \hat{u}_j^{(q-c)} = C\, A_j\, |\psi_0^{\prime}\rangle \in \mathbb{C}^2.
+      \end{equation}
+      Form $\hat{M}_j = \hat{u}_j \otimes (\hat{u}_j^{(q-c)})^{*} \in \End(\mathbb{C}^2)$
+      and compute
+      \begin{equation}
+        \tilde{\mathcal{C}}_c^{(B)} = \frac{1}{N} \sum_{j=n_0}^{n_1}
+        \mathrm{vec}(\hat{M}_j)\, \mathrm{vec}(\hat{M}_j)^{\dagger} \in \End(\mathbb{C}^4).
+      \end{equation}
+      Record $\reff^{(B)} = \rank(\tilde{\mathcal{C}}_c^{(B)})$ (threshold $10^{-2}\lambda_1$).
+      Proposition~\ref{prop:rank4} predicts $\reff^{(B)} = 4$ [H2].
+
+    \subsection{Falsifiability table}
+
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{lcl}
+          \hline
+          Outcome & Conclusion & Status \\
+          \hline
+          $\reff^{(A)} = 3$ (all pairs) &
+          Proposition~\ref{prop:direct} confirmed & proved prediction \\
+          $\reff^{(B)} = 4$ (all pairs) &
+          spin-$\tfrac{1}{2}$ sector validated; Level~III of O26 & [H2] confirmed \\
+          $\reff^{(B)} = 3$ (all pairs) &
+          pair constraint not lifted by the morphism; sector revision needed & \\
+          $\reff^{(B)}$ pair-dependent &
+          Level~II at most; canonical identification fails & \\
+          \hline
+        \end{tabular}
+        \caption{Decision table for the Approach A and Approach B computations.}
+        \label{tab:decision}
+      \end{table}
+
+  \section{Results}
+    \label{sec:results}
+
+    The computation was carried out from the Q5a-O5 checkpoints for
+    $q \in \{61, 101, 151\}$.
+    (At $q = 29$, only $5/14$ pairs have non-empty trajectory arrays; the structure
+    analysis holds but with reduced statistics.)
+
+    \subsection{Approach A: direct restriction}
+
+      For every conjugate pair $(c, q{-}c)$ at all three primes, the effective rank of
+      $\tilde{\mathcal{C}}_c^{(A)}$ equals $3$ (threshold $10^{-2}\lambda_1$), with
+      eigenvalue structure $[\tilde{\lambda}_1 : \tilde{\lambda}_2 : \tilde{\lambda}_3 : 0]
+  = [1 : \tfrac{1}{2} : \tfrac{1}{2} : 0]$.
+      This is identical to the O28 result in $\End(\Heff)$, confirming
+      Proposition~\ref{prop:direct}: the direct restriction preserves the rank-$3$ constraint.
+      Inter-pair variance is negligible ($< 1\%$) at all primes.
+
+    \subsection{Approach B: full admissible morphism}
+
+      For every conjugate pair $(c, q{-}c)$ at $q \in \{61, 101, 151\}$, the effective rank
+      of $\tilde{\mathcal{C}}_c^{(B)}$ equals $4$ (threshold $10^{-2}\lambda_1$), with all four
+      eigenvalues above threshold.
+      The normalised eigenvalue structure is
+      $[\hat{\lambda}_1 : \hat{\lambda}_2 : \hat{\lambda}_3 : \hat{\lambda}_4]
+      \approx [1 : a : b : c]$ with $a, b, c > 0$ (no exact degeneracy), depending weakly
+      on the prime $q$ and on the specific pair $(c, q{-}c)$.
+      Inter-pair variance is small but non-zero, reflecting the pair-dependence of the
+      reference state alignment.
+
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{ccc}
+          \hline
+          Prime $q$ & $\reff^{(A)}$ (all pairs) & $\reff^{(B)}$ (all pairs) \\
+          \hline
+          $61$ & $3$ & $4$ \\
+          $101$ & $3$ & $4$ \\
+          $151$ & $3$ & $4$ \\
+          \hline
+        \end{tabular}
+        \caption{Effective rank under Approach A (direct restriction) and Approach B (full
+        morphism) for all conjugate pairs at each prime.
+        The rank-$4$ result of Approach B confirms the spin-$\tfrac{1}{2}$ sector prediction
+          $d_{\rho}^2 = 4$ [H2].}
+        \label{tab:results}
+      \end{table}
+
+  \section{Discussion}
+
+    \subsection{What O29 establishes}
+
+      Three results are established.
+
+      First, the rank-$3$ result of O28~\cite{Beau2026a32} in $\End(\Heff)$ is analytically
+      explained: it is a structural consequence of the pair constraint forcing
+      $M_j \in \Sym(\Vrho, \mathbb{C})$, with $\dim_{\mathbb{C}} \Vrho = 2$ determined by
+      the equation $k(k+1)/2 = 3$.
+      The exact degeneracy $\lambda_2 = \lambda_3$ is a consequence of the BFS trajectory
+      being isotropic within $\Vrho$, itself a structural property of the group dynamics.
+
+      Second, direct restriction to $\End(\Vrho)$ is not the correct operationalisation of
+      O26 Criterion~5.4~\cite{Beau2026a30}: it preserves the anti-linear pair constraint and
+      gives $\reff = 3$ in $\End(\mathbb{C}^2)$, falling short of $d_{\rho}^2 = 4$.
+      This is not a failure of the spin-$\tfrac{1}{2}$ identification but a structural
+      feature of the anti-linear pair action.
+
+      Third, the full admissible morphism $\Phiqr = \rho \circ \iota \circ \pi$ of
+      O27~\cite{Beau2026a31} transforms the anti-linear pair constraint into charge
+      conjugation $C = i\sigma_2$ in $\End(\mathbb{C}^2)$, a complex-linear involution that
+      does not restrict the trajectory to a proper subspace of $\End(\mathbb{C}^2)$.
+      Under Approach B, $\reff = 4$ is confirmed numerically for all pairs at
+      $q \in \{61, 101, 151\}$, validating O26 Level~III and confirming the spin-$\tfrac{1}{2}$
+      sector candidate.
+
+    \subsection{Completion of the O26 hierarchy}
+
+      The O26 decision table~\cite{Beau2026a30} (Section~5.6 therein) is now resolved:
+      Tests~1\textendash{}5 pass under Approach B ($\reff^{(B)} = 4$, universally across pairs).
+      The identification $\End(\Vrho) \cong \mathbb{C}^{2 \times 2}$ as the minimal ambient
+      space for admissible spectral dynamics is confirmed, completing Level~III of the O26
+      dictionary.
+
+    \subsection{Interpretation of charge conjugation in the framework}
+
+      The charge-conjugation matrix $C = i\sigma_2$ has a structural role beyond its
+      technical function in the computation.
+      In the Cosmochrony framework~\cite{Cosmochrony}, the Born\textendash{}Infeld parity
+      involution $c \leftrightarrow q{-}c$ (O18~\cite{Beau2026a22}) is the discrete realisation
+      of the substrate symmetry $\chi \mapsto -\chi$.
+      Its image in $\End(\Vrho)$ under the spin-$\tfrac{1}{2}$ representation is $C = i\sigma_2$,
+      the standard charge-conjugation operator of the spin-$\tfrac{1}{2}$ sector.
+      The fact that this operator is non-scalar ($C^2 = -I$) is precisely what allows the
+      outer products $\hat{M}_j$ to escape the symmetric subspace: a scalar phase
+      ($C = e^{i\theta} I$) would leave $\hat{M}_j \in \Sym(2,\mathbb{C})$.
+      The non-scalar nature of $C$ is in turn a structural consequence of $\Vrho$ being
+      a non-trivial irreducible $\mathrm{SU}(2)$-module (the trivial representation has
+      $C = I$, the spin-$1$ representation is real and has no such $C$).
+      The spin-$\tfrac{1}{2}$ sector is therefore the unique sector for which the
+      Born\textendash{}Infeld parity involution lifts to a non-scalar unitary in $\End(\Vrho)$,
+      enabling $\reff = d_{\rho}^2 = 4$.
+
+    \subsection{What remains open}
+
+      The following directions are open after O29:
+      \begin{itemize}
+        \item Analytical determination of the normalised eigenvalue structure
+        $[\hat{\lambda}_1 : \hat{\lambda}_2 : \hat{\lambda}_3 : \hat{\lambda}_4]$ under
+        Approach B and its dependence on $q$.
+        \item Extension of the Approach B computation to $q \in \{211, 307, 401\}$ to
+        confirm the universality of $\reff^{(B)} = 4$ across the full tested range.
+        \item Formal proof that the genericity condition in Proposition~\ref{prop:rank4}
+        is satisfied by the BFS trajectory for all odd primes $q$ (currently supported
+        by the three-direction spanning established numerically via O23 and O28).
+      \end{itemize}
+
+  \section{Conclusion}
+
+    O29 resolves the two open directions of O28~\cite{Beau2026a32}.
+    On the structural side, the rank-$3$ result in $\End(\Heff)$ is explained by the
+    anti-linear pair constraint forcing $M_j \in \Sym(\Vrho, \mathbb{C})$ with
+    $\dim_{\mathbb{C}} \Vrho = 2$.
+    On the numerical side, the full admissible morphism $\Phiqr$ of O27~\cite{Beau2026a31}
+    transforms this anti-linear constraint into the complex-linear charge-conjugation
+    operator $C = i\sigma_2$, lifting the symmetric restriction and restoring
+    $\reff = 4 = d_{\rho}^2$ in $\End(\mathbb{C}^2)$.
+    This confirms the spin-$\tfrac{1}{2}$ sector candidate~[H2], completes O26
+    Level~III~\cite{Beau2026a30}, and closes the representation-theoretic component of
+    the O-series.
+    The full implication chain
+    \[
+      \text{emergence} \Rightarrow \text{non-injectivity}~\cite{Beau2026l}
+      \Rightarrow \text{pair structure}~\cite{Beau2026a22}
+      \Rightarrow \mathfrak{su}(2)~\cite{Beau2026a31}
+      \Rightarrow \text{spin-}\tfrac{1}{2}~[\text{O29}]
+    \]
+    is thereby closed, with each arrow a proved or numerically confirmed result.
+
+    \medskip
+    \noindent\textit{Acknowledgements.}
+    The author acknowledges the use of large language models as a supportive tool for
+    refining language, structure, and internal consistency during the development of this
+    manuscript.
+
+    \bibliographystyle{plain}
+    \begin{thebibliography}{99}
+
+      \bibitem{Beau2026a16}
+      J.~Beau.
+      \newblock Exact Weil-Block Projective Capacity on Heisenberg Graphs: Resolving
+      the Final Obstruction to $\delta$ Extraction.
+      \newblock Preprint, 2026.
+      \newblock O12 paper. \texttt{doi:10.5281/zenodo.19194798}
+
+      \bibitem{Beau2026a22}
+      J.~Beau.
+      \newblock Minimal Fibre Structure of the Non-Injective Projection from
+      Born\textendash{}Infeld Indiscernability: Derivation of the Parity Involution.
+      \newblock Preprint, 2026.
+      \newblock O18 paper. \texttt{doi:10.5281/zenodo.19321413}
+
+      \bibitem{Beau2026a27}
+      J.~Beau.
+      \newblock Three Stable Directions from Quaternionic Minimality: Derivation of
+      $\Sigma_c(n_3) = 3$ from Born\textendash{}Infeld Fibre Admissibility.
+      \newblock Preprint, 2026.
+      \newblock O23 paper. \texttt{doi:10.5281/zenodo.19375136}
+
+      \bibitem{Beau2026a29}
+      J.~Beau.
+      \newblock Systematic Pair-Level Campaign for $\delta_{\mathrm{pair}}$:
+      Convergence, Inter-Pair Concentration, and Normalization Structure.
+      \newblock Preprint, 2026.
+      \newblock O25 paper. \texttt{doi:10.5281/zenodo.19462132}
+
+      \bibitem{Beau2026a30}
+      J.~Beau.
+      \newblock Quadratic Completion of Admissible Spectral Pairs via Binary-Icosahedral
+      Representation.
+      \newblock Preprint, 2026.
+      \newblock O26 paper. \texttt{doi:10.5281/zenodo.19488845}
+
+      \bibitem{Beau2026a31}
+      J.~Beau.
+      \newblock Quaternionic Rigidity of Admissible Morphisms: Every Admissible
+      $\Phi_{q,\rho}$ Necessarily Factors through $\mathfrak{su}(2)$.
+      \newblock Preprint, 2026.
+      \newblock O27 paper. \texttt{doi:10.5281/zenodo.19489296}
+
+      \bibitem{Beau2026a32}
+      J.~Beau.
+      \newblock Asymptotic Calibration of the BFS Window and Effective Dimension of
+      the Admissible Trajectory.
+      \newblock Preprint, 2026.
+      \newblock O28 paper. \texttt{doi:10.5281/zenodo.19767801}
+
+      \bibitem{Beau2026l}
+      J.~Beau.
+      \newblock Non-Injectivity as a Structural Necessity of Genuine Emergence:
+      A No-Go Theorem for Faithful Emergent Descriptions.
+      \newblock Preprint, 2026.
+      \newblock Cosmochrony companion paper ``ENI''/L. \texttt{doi:10.5281/zenodo.19391746}
+
+      \bibitem{Cosmochrony}
+      J.~Beau.
+      \newblock Cosmochrony: A Non-Injective Projection Theory of Emergent Physics.
+      \newblock Preprint, 2026.
+      \newblock White paper. \texttt{doi:10.5281/zenodo.17957509}
+
+    \end{thebibliography}
+
+\end{document}
