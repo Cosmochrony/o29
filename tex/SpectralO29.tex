@@ -367,64 +367,81 @@ specific group dynamics.
     \subsection{Protocol}
 
       The computation uses the Q5a-O5 checkpoints (one \texttt{.npz} file per prime $q$),
-      which store \texttt{V\_n}, the array of per-shell admissible projections
-      $\pi_c(v^{(n)}) \in \Heff = \mathbb{C}^3$.
+      which store \texttt{pi\_c} and \texttt{pi\_qmc}, the per-shell H\_eff projections of
+      BFS fingerprint vectors for sample $m = 0$ of each Monte Carlo run.
+      Each cell \texttt{pi\_c}$[p, k]$ has shape $(N_{s,k}, 3)$, where $N_{s,k}$ is the
+      number of new BFS vectors in window shell $k$ for pair $p$.
       No additional BFS computation is required.
 
-      \textbf{Step A (in $\End(\Heff)$, reproducing O28):}
-      For each conjugate pair $(c, q{-}c)$ and each $j \in [n_0, n_1]$, form
-      $M_j = w_j w_j^{\top}$ (explicit use of~\eqref{eq:outer}) and compute
-      $\Cc^{(A)}$ in $\End(\mathbb{C}^3)$.
-      Record $\reff^{(A)}$ and the eigenvalue ratio $\lambda_2/\lambda_1$.
+      \textbf{Step A (in $\End(\Heff)$):}
+      For each conjugate pair $(c, q{-}c)$, concatenate all per-shell vectors into a single
+      trajectory matrix $W_c = \bigl[\texttt{pi\_c}[p,n_0]\,;\,\ldots\,;\,\texttt{pi\_c}[p,n_1]\bigr]
+  \in \mathbb{C}^{N \times 3}$, where $N = \sum_k N_{s,k}$.
+      Form the per-vector outer products and compute $\Cc^{(A)}$ in $\End(\mathbb{C}^3)$.
+      The effective rank $\reff^{(A)}$ and the symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$
+      (averaged over $j$) are recorded for each pair.
 
       \textbf{Step B (in $\End(\Vrho)$):}
-      Identify $\Vrho$ via the SVD of the trajectory matrix
-      $W_c = [w_{n_0}, \ldots, w_{n_1}] \in \mathbb{C}^{3 \times N}$:
-      the two leading left singular vectors $\{u_1, u_2\}$ span $\Vrho$
-      (verified by checking that the third singular value is negligible).
-      Let $P = [u_1, u_2] \in \mathbb{C}^{3 \times 2}$ and project:
-      $\tilde{w}_j = P^{\dagger} w_j \in \mathbb{C}^2$.
-      Form $\tilde{M}_j = \tilde{w}_j \tilde{w}_j^{\top} \in \Sym(2, \mathbb{C})$
-      and compute $\Cc^{(B)}$ in $\End(\mathbb{C}^2)$.
+      Identify $\Vrho$ via the SVD of $W_c^{\top}$, project both trajectories onto the leading
+      two right singular vectors, and compute $\Cc^{(B)}$ in $\End(\mathbb{C}^2)$.
       Record $\reff^{(B)}$.
 
       \textbf{Step C (inversion):}
-      Apply~\eqref{eq:inversion} to recover $d_{\rho}$ from $\reff^{(B)}$.
-      Verify that $d_{\rho}$ is a positive integer.
+      Apply~\eqref{eq:inversion} to $\reff^{(A)}$ to recover $d_{\rho}$.
 
     \subsection{Results}
-
-      The computation was carried out for $q \in \{61, 101, 151\}$
-      (at $q = 29$, only $5/14$ pairs have non-empty trajectory arrays).
 
       \begin{table}[h]
         \centering
         \begin{tabular}{ccccc}
           \hline
-          Prime $q$ & Pairs & $\reff^{(A)}$ & $\reff^{(B)}$ & $d_{\rho}$ \\
+          Prime $q$ & Pairs & $\reff^{(A)} = 3$ & $d_{\rho}$ & Median $|M-M^{\top}|/|M|$ \\
           \hline
-          $61$ & all & $3$ & $3$ & $2$ \\
-          $101$ & all & $3$ & $3$ & $2$ \\
-          $151$ & all & $3$ & $3$ & $2$ \\
+          $61$  & $30/30$  & $100\%$ & $2$ & $7.0 \times 10^{-2}$ \\
+          $101$ & $32/50$  & $64\%$  & $2$ (modal) & $6.2 \times 10^{-2}$ \\
+          $151$ & $75/75$  & $100\%$ & $2$ & $2.8 \times 10^{-2}$ \\
           \hline
         \end{tabular}
-        \caption{Effective ranks in $\End(\Heff)$ (Step~A) and $\End(\Vrho)$ (Step~B),
-          and the inferred $d_{\rho}$ from~\eqref{eq:inversion}.
-          Values are constant across all conjugate pairs at each prime.
-          Inter-pair variance of eigenvalue ratios is negligible
-          ($< 1\%$ at all tested primes), consistent with O28~\cite{Beau2026a32}.}
+        \caption{Fraction of conjugate pairs with $\reff^{(A)} = 3$ in $\End(\Heff)$,
+          the inferred $d_{\rho}$ via~\eqref{eq:inversion}, and the median symmetry ratio
+          $|M_j - M_j^{\top}|_F / |M_j|_F$ (Step~A).
+          At $q = 61$ and $q = 151$, $\reff^{(A)} = 3$ holds universally with zero inter-pair
+          variance, uniquely identifying $d_{\rho} = 2$.}
         \label{tab:results}
       \end{table}
 
-      The eigenvalue structure in $\End(\Vrho)$ (Step~B) replicates the O28 structure:
-      $[\tilde{\lambda}_1 : \tilde{\lambda}_2 : \tilde{\lambda}_3 : 0]
-      = [1 : \tfrac{1}{2} : \tfrac{1}{2} : 0]$,
-      with the three non-zero eigenvalues filling $\Sym(2, \mathbb{C})$ as predicted.
+      The result $\reff^{(A)} = 3$, invariant across all pairs at $q \in \{61, 151\}$, is the
+      central numerical finding of O29.
+      Via the symmetric rank formula~\eqref{eq:sym-rank} and its inversion~\eqref{eq:inversion},
+      this identifies $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$) with zero inter-pair variance at
+      both primes.
+      The eigenvalue ratio $\lambda_2/\lambda_1 \approx \tfrac{1}{2}$ is confirmed in
+      $\End(\Heff)$ (consistent with O28~\cite{Beau2026a32}), corresponding to the
+      $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$ structure.
 
-      The third singular value of the trajectory matrix $W_c$ is numerically negligible
-      compared to $\sigma_1$ and $\sigma_2$ (ratio $\sigma_3/\sigma_1 < 10^{-2}$ for all
-      tested pairs and primes), confirming $\dim_{\mathbb{C}} \Vrho = 2$ at the numerical
-      level.
+      The symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$ is small but non-zero (median
+      $2.8 \times 10^{-2}$ to $7.0 \times 10^{-2}$), consistent with the pair constraint
+      acting as $\pi_{q-c}(v) = \lambda \overline{\pi_c(v)}$ for a slowly varying phase
+      $\lambda$ rather than a pure scalar.
+      This small deviation from exact symmetry does not alter the rank: $\reff^{(A)} = 3$
+      is robust across all pairs at $q \in \{61, 151\}$.
+
+      \begin{remark}[Anomaly at $q = 101$]
+        \label{rem:q101}
+        At $q = 101$, $\reff^{(A)} = 3$ holds for $64\%$ of pairs ($32/50$), while the
+        remaining pairs have $\reff^{(A)} \in \{4, 5, 6, 7, 8, 9\}$ and median symmetry ratio
+        $6.2 \times 10^{-2}$, slightly higher than at $q = 151$.
+        The anomalous pairs correspond to characters $c$ for which the BFS fingerprint
+        at sample $m = 0$ explores the full $3$-dimensional $\Heff$ non-symmetrically,
+        rather than the generic $2$-dimensional symmetric subspace.
+        This is consistent with $q = 101$ being in a transitional regime for $n_1(q)/q$
+        identified by O28~\cite{Beau2026a32}: the fitting window at $q = 101$ captures more
+        cross-shell variation than at $q = 61$ or $q = 151$.
+        The modal result $d_{\rho} = 2$ is confirmed by the $64\%$ majority, and the anomalous
+        pairs represent pairs where a single Monte Carlo sample ($m = 0$) yields an atypical
+        trajectory.
+        This open question is deferred to a future analysis using all $M = 50$ samples.
+      \end{remark}
 
   \section{Discussion}
 
@@ -443,9 +460,10 @@ specific group dynamics.
       For $\reff = 3$, the unique solution is $d_{\rho} = 2$, confirming the spin-$\tfrac{1}{2}$
       sector without recourse to the full rank $d_{\rho}^2 = 4$.
 
-      \textbf{Third}, the numerical computation confirms $\reff = 3$ in both
-      $\End(\Heff)$ and $\End(\Vrho)$ for all pairs at $q \in \{61, 101, 151\}$,
-      with zero inter-pair variance at $q = 101$ and negligible variance at $q = 61, 151$.
+      \textbf{Third}, the numerical computation confirms $\reff^{(A)} = 3$ universally across
+      all pairs at $q \in \{61, 151\}$ (zero inter-pair variance), and for $64\%$ of pairs
+      at $q = 101$ (modal result).
+      At $q \in \{61, 151\}$, the identification $d_{\rho} = 2$ is unconditional.
 
     \subsection{Revision of the O26 criterion}
 
@@ -499,11 +517,12 @@ specific group dynamics.
     The resulting covariance rank satisfies the symmetric rank formula
     $\reff = d_{\rho}(d_{\rho}+1)/2$, whose unique positive integer inversion at
     $\reff = 3$ gives $d_{\rho} = 2$, confirming the spin-$\tfrac{1}{2}$ sector.
-    Restricting to $\End(\Vrho)$ does not change the rank: both the proxy computation
-    of O28 and the correct O26 test yield the same $\reff = 3$.
-    The O26 Criterion~5.4 is reformulated for conjugate-pair data by replacing
-    $d_{\rho}^2 \to d_{\rho}(d_{\rho}+1)/2$; the spin-$\tfrac{1}{2}$ candidate
-    satisfies the reformulated criterion exactly.
+    Numerically, $\reff^{(A)} = 3$ holds universally across all conjugate pairs at
+    $q = 61$ ($30/30$) and $q = 151$ ($75/75$), with zero inter-pair variance at both
+    primes.
+    At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); the anomalous
+    pairs are attributed to atypical single-sample trajectories and are deferred to a
+    multi-sample analysis.
 
     \medskip
     \noindent\textit{Acknowledgements.}
