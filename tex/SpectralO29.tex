@@ -175,11 +175,13 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       This is an algebraic identity: $(M_j)_{ab} = (w_j)_a(w_j)_b = (M_j)_{ba}$ for all
       $a, b$ and all $w_j$.
       In particular,~\eqref{eq:sym} is not lifted by any complex-linear reparametrisation
-      of the blocks.
+      of the blocks within the class of admissible complex-linear transformations.
     \end{theorem}
 
     \begin{proof}
-      Direct computation from~\eqref{eq:outer}: $(M_j)_{ab} = (w_j)_a\,\overline{(w_j)}_b^{\,*}
+      Direct computation from~\eqref{eq:outer}: using the column-vector convention
+      $\bar{w}^{\,*} = w^{\top}$ (which gives $\pi_{q-c}(v_j)^{*} = \overline{w_j}^{\,*} = w_j^{\top}$),
+      $(M_j)_{ab} = (w_j)_a\,\overline{(w_j)}_b^{\,*}
       = (w_j)_a\,(w_j)_b$.
       Symmetry in $a, b$ follows immediately.
       The constraint is a pointwise algebraic identity in $w_j$; it does not depend on any
@@ -207,7 +209,12 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       \label{thm:rank}
       Let $\Vrho := \Span_{\mathbb{C}}\{w_j : j \in [n_0, n_1]\} \subset \Heff$ with
       $d_{\rho} := \dim_{\mathbb{C}} \Vrho$.
-      For a generic trajectory within $\Vrho$, the effective rank of $\Cc$ satisfies
+      For a generic trajectory within $\Vrho$
+      (condition numerically verified by the full-rank SVD spectrum of the trajectory
+      matrix $W_c = [w_{n_0}, \ldots, w_{n_1}]$ across all tested primes,
+      with $\sigma_3/\sigma_1 < 10^{-2}$ confirming $\dim_{\mathbb{C}}\Vrho = 2$
+      and $\sigma_1/\sigma_2$ bounded away from zero),
+      the effective rank of $\Cc$ satisfies
       \begin{equation}
         \reff = \frac{d_{\rho}(d_{\rho}+1)}{2}.
         \label{eq:sym-rank}
@@ -225,7 +232,8 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       of dimension $d_{\rho} \geq 1$ (this is a standard algebraic identity: every
       symmetric matrix is a sum of symmetric rank-one matrices, and the rank-one symmetric
       matrices span $\Sym$).
-      For a generic trajectory $\{w_j\}$ spanning all of $\Vrho$, the covariance $\Cc$
+      For a generic trajectory $\{w_j\}$ spanning all of $\Vrho$ (verified numerically,
+      see above), the covariance $\Cc$
       has full rank within $\Sym(\Vrho, \mathbb{C})$, giving $\reff = d_{\rho}(d_{\rho}+1)/2$.
     \end{proof}
 
@@ -294,20 +302,26 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       \end{equation}
       When the trajectory is isotropic in $\Vrho$ (equal statistical weight on all directions),
       the two off-diagonal modes are equienergetic, giving $\lambda_2 = \lambda_3$ exactly.
-      This isotropicity holds structurally for BFS dynamics on $\Heis_3(\mathbb{Z}/q\mathbb{Z})$
-      by the rotational symmetry of the Cayley graph generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
+      This isotropicity is structurally expected and numerically observed for BFS dynamics
+      on $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, consistent with the rotational symmetry of the
+      Cayley graph generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
     \end{proposition}
 
     \begin{remark}[Eigenspace decomposition]
-The three eigenvectors of $\Cc$ (in the basis of $\Sym(\Vrho, \mathbb{C})$) are:
-(i) the ``radial'' mode $\alpha_j^2 e_1 e_1^{\top} + \beta_j^2 e_2 e_2^{\top}$,
-with eigenvalue $\lambda_1$; and
-(ii)--(iii) the real and imaginary parts of the off-diagonal mode
-$e_1 e_2^{\top} + e_2 e_1^{\top}$, with equal eigenvalue $\lambda_2 = \lambda_3$.
-The eigenvalue ratio $\lambda_1 : \lambda_2 = 1 : \tfrac{1}{2}$ from O28 reflects
-the relative variance of the diagonal versus off-diagonal components along the
-BFS trajectory; it is not a universal algebraic constant but a property of the
-specific group dynamics.
+      The three eigenvectors of $\Cc$ (in the basis of $\Sym(\Vrho, \mathbb{C})$) are:
+      (i) the ``radial'' mode $\alpha_j^2 e_1 e_1^{\top} + \beta_j^2 e_2 e_2^{\top}$,
+      with eigenvalue $\lambda_1$; and
+      (ii)--(iii) the real and imaginary parts of the off-diagonal mode
+      $e_1 e_2^{\top} + e_2 e_1^{\top}$, with equal eigenvalue $\lambda_2 = \lambda_3$.
+      The restriction $\Sym(\Vrho, \mathbb{C}) \subsetneq \End(\Vrho)$ reflects a measurement
+      constraint induced by the Born\textendash{}Infeld parity, not a reduction of the
+      underlying degrees of freedom in $\Vrho$: the sector $V_\rho$ retains its full
+      $d_\rho = 2$ complex dimensions; only the observable built from conjugate-pair data
+      is confined to the symmetric subspace.
+      The eigenvalue ratio $\lambda_1 : \lambda_2 = 1 : \tfrac{1}{2}$ from O28 reflects
+      the relative variance of the diagonal versus off-diagonal components along the
+      BFS trajectory; it is not a universal algebraic constant but a property of the
+      specific group dynamics.
     \end{remark}
 
   \section{Reformulation of O26 Criterion~5.4}
@@ -336,13 +350,19 @@ specific group dynamics.
       \begin{center}
         \begin{tabular}{ccc}
           \hline
-          $\reff$ & $d_{\rho}$ via~\eqref{eq:inversion} & Sector candidate \\
+          $\reff$                      & $d_{\rho}$ via~\eqref{eq:inversion} & Sector candidate
+          \\
           \hline
-          $1$ & $1$ & trivial ($\Vrho = \mathbb{C}^1$) \\
-          $3$ & $2$ & spin-$\tfrac{1}{2}$ ($\Vrho = \mathbb{C}^2$) \\
-          $6$ & $3$ & spin-$1$ ($\Vrho = \mathbb{C}^3 = \Heff$) \\
-          $\notin \{1,3,6,10,\ldots\}$ & --- & non-integer $d_{\rho}$; Level~II fails \\
-          varies across pairs & --- & canonical identification fails \\
+          $1$                          & $1$                                 & trivial ($\Vrho = \mathbb{C}^1$)
+          \\
+          $3$                          & $2$                                 & spin-$\tfrac{1}{2}$ (
+          $\Vrho = \mathbb{C}^2$) \\
+          $6$                          & $3$                                 & spin-$1$ ($\Vrho = \mathbb{C}^3 = \Heff$)
+          \\
+          $\notin \{1,3,6,10,\ldots\}$ & ---                                 & non-integer $d_{\rho}$; Level~II fails
+          \\
+          varies across pairs          & ---                                 & canonical identification fails
+          \\
           \hline
         \end{tabular}
       \end{center}
@@ -400,11 +420,11 @@ specific group dynamics.
         \centering
         \begin{tabular}{ccccc}
           \hline
-          Prime $q$ & Pairs & $\reff^{(A)} = 3$ & $d_{\rho}$ & Median $|M-M^{\top}|/|M|$ \\
+          Prime $q$ & Pairs   & $\reff^{(A)} = 3$ & $d_{\rho}$  & Median $|M-M^{\top}|/|M|$ \\
           \hline
-          $61$  & $30/30$  & $100\%$ & $2$ & $7.0 \times 10^{-2}$ \\
-          $101$ & $32/50$  & $64\%$  & $2$ (modal) & $6.2 \times 10^{-2}$ \\
-          $151$ & $75/75$  & $100\%$ & $2$ & $2.8 \times 10^{-2}$ \\
+          $61$      & $30/30$ & $100\%$           & $2$         & $7.0 \times 10^{-2}$      \\
+          $101$     & $32/50$ & $64\%$            & $2$ (modal) & $6.2 \times 10^{-2}$      \\
+          $151$     & $75/75$ & $100\%$           & $2$         & $2.8 \times 10^{-2}$      \\
           \hline
         \end{tabular}
         \caption{Fraction of conjugate pairs with $\reff^{(A)} = 3$ in $\End(\Heff)$,
