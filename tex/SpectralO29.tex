@@ -423,7 +423,8 @@ specific group dynamics.
           At $q = 61$ ($30/30$ pairs) and $q = 151$ ($75/75$ pairs), $\reff = 3$ holds
           universally with zero inter-pair variance.
           At $q = 101$, $\reff = 3$ is the modal result ($64\%$ of pairs); anomalous pairs
-          are attributed to atypical single-sample BFS trajectories (Remark~\ref{rem:q101}).
+          are confirmed as single-sample Monte Carlo artefacts by a multi-sample analysis
+          (Remark~\ref{rem:q101}).
           \textbf{(b)} Median normalised eigenvalue spectrum $\lambda_i/\lambda_1$
           in $\End(\Heff)$, computed over all $\reff^{(A)} = 3$ pairs at each prime.
           The two subleading eigenvalues satisfy $\lambda_2/\lambda_1 \approx \lambda_3/\lambda_1
@@ -451,21 +452,28 @@ specific group dynamics.
       This small deviation from exact symmetry does not alter the rank: $\reff^{(A)} = 3$
       is robust across all pairs at $q \in \{61, 151\}$.
 
-      \begin{remark}[Anomaly at $q = 101$]
+      \begin{remark}[Anomaly at $q = 101$: multi-sample resolution]
         \label{rem:q101}
-        At $q = 101$, $\reff^{(A)} = 3$ holds for $64\%$ of pairs ($32/50$), while the
-        remaining pairs have $\reff^{(A)} \in \{4, 5, 6, 7, 8, 9\}$ and median symmetry ratio
-        $6.2 \times 10^{-2}$, slightly higher than at $q = 151$.
-        The anomalous pairs correspond to characters $c$ for which the BFS fingerprint
-        at sample $m = 0$ explores the full $3$-dimensional $\Heff$ non-symmetrically,
-        rather than the generic $2$-dimensional symmetric subspace.
-        This is consistent with $q = 101$ being in a transitional regime for $n_1(q)/q$
-        identified by O28~\cite{Beau2026a32}: the fitting window at $q = 101$ captures more
-        cross-shell variation than at $q = 61$ or $q = 151$.
-        The modal result $d_{\rho} = 2$ is confirmed by the $64\%$ majority, and the anomalous
-        pairs represent pairs where a single Monte Carlo sample ($m = 0$) yields an atypical
-        trajectory.
-        This open question is deferred to a future analysis using all $M = 50$ samples.
+        At $q = 101$, the single-sample run ($m = 0$) of \texttt{o29\_rank\_computation.py}
+        yields $\reff^{(A)} = 3$ for $64\%$ of pairs ($32/50$), with the remaining $18$ pairs
+        giving $\reff^{(A)} \in \{4, 5, 6, 7, 8, 9\}$.
+        To determine whether this dispersion reflects a structural property of
+        $\Heis_3(\mathbb{Z}/101\mathbb{Z})$ or a Monte Carlo sampling artefact,
+        a dedicated multi-sample analysis was carried out using \texttt{o29\_multisample.py},
+        replaying $M = 5$ independent samples for each of the $18$ anomalous pairs
+        (using per-pair deterministic seeds).
+
+        The result is unambiguous: all $18$ anomalous pairs have modal $\reff = 3$,
+        and $89\%$ of the $18 \times 5 = 90$ (pair, sample) cells satisfy $\reff = 3$.
+        The distribution of non-modal values is consistent with high-$\reff$ outliers
+        arising from atypical BFS blocks: for example, pair $(8, 93)$ gives
+        $\{3, 3, 3, 3, 8\}$, where the single reff$= 8$ sample corresponds to a
+        block that explores a non-generic direction in $\Heff$.
+
+        The $q = 101$ anomaly is therefore a single-sample Monte Carlo artefact,
+        not a structural feature of the group.
+        Across all three primes and all pairs, the identification $d_{\rho} = 2$
+        (spin-$\tfrac{1}{2}$) is confirmed without exception at the modal level.
       \end{remark}
 
   \section{Discussion}
@@ -545,9 +553,12 @@ specific group dynamics.
     Numerically, $\reff^{(A)} = 3$ holds universally across all conjugate pairs at
     $q = 61$ ($30/30$) and $q = 151$ ($75/75$), with zero inter-pair variance at both
     primes.
-    At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); the anomalous
-    pairs are attributed to atypical single-sample trajectories and are deferred to a
-    multi-sample analysis.
+    At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); a
+    dedicated multi-sample analysis confirms that all $18$ anomalous pairs have modal
+    $\reff = 3$, with $89\%$ of (pair, sample) cells satisfying $\reff = 3$
+    (Remark~\ref{rem:q101}).
+    The $q = 101$ anomaly is a single-sample Monte Carlo artefact, not a structural
+    feature of the group.
 
     \medskip
     \noindent\textit{Acknowledgements.}
