@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 
@@ -410,7 +411,31 @@ specific group dynamics.
         \label{tab:results}
       \end{table}
 
-      The result $\reff^{(A)} = 3$, invariant across all pairs at $q \in \{61, 151\}$, is the
+      \begin{figure}[t]
+        \centering
+        \includegraphics[width=\linewidth]{o29_rank_plot}
+        \caption{%
+          \textbf{(a)} Effective rank $\reff^{(A)}$ in $\End(\Heff) = \End(\mathbb{C}^3)$
+          per conjugate pair $(c, q{-}c)$, for $q \in \{61, 101, 151\}$
+          (reproduced from the \texttt{o29\_rank\_computation.py} pipeline).
+          The dashed green line marks $\reff = 3$, the symmetric rank formula prediction
+          for $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$).
+          At $q = 61$ ($30/30$ pairs) and $q = 151$ ($75/75$ pairs), $\reff = 3$ holds
+          universally with zero inter-pair variance.
+          At $q = 101$, $\reff = 3$ is the modal result ($64\%$ of pairs); anomalous pairs
+          are attributed to atypical single-sample BFS trajectories (Remark~\ref{rem:q101}).
+          \textbf{(b)} Median normalised eigenvalue spectrum $\lambda_i/\lambda_1$
+          in $\End(\Heff)$, computed over all $\reff^{(A)} = 3$ pairs at each prime.
+          The two subleading eigenvalues satisfy $\lambda_2/\lambda_1 \approx \lambda_3/\lambda_1
+          \approx \tfrac{1}{2}$, confirming the invariant structure
+          $[\lambda_1 : \lambda_2 : \lambda_3] = [1 : \tfrac{1}{2} : \tfrac{1}{2}]$
+          of O28~\cite{Beau2026a32}.
+          Eigenvalues $\lambda_4, \ldots, \lambda_9$ lie below the $1\%$ threshold
+          (dotted red line) by more than two orders of magnitude.}
+        \label{fig:reff}
+      \end{figure}
+
+      The result $\reff^{(A)} = 3$, shown in Figure~\ref{fig:reff}(a), is the
       central numerical finding of O29.
       Via the symmetric rank formula~\eqref{eq:sym-rank} and its inversion~\eqref{eq:inversion},
       this identifies $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$) with zero inter-pair variance at
