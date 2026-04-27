@@ -20,14 +20,14 @@ More precisely:
 
 - conjugate-pair data are constrained by an anti-linear parity
 - this forces outer products into a symmetric subspace
-- the accessible rank is reduced from \(d_\rho^2\) to \(d_\rho(d_\rho+1)/2\)
+- the accessible rank is reduced from $d_\rho^2$ to $d_\rho(d_\rho+1)/2$
 
 Thus:
 
 - the observable used in O26 must be reformulated
-- the corrected observable uniquely identifies \(d_\rho = 2\)
+- the corrected observable uniquely identifies $d_\rho = 2$
 
-This confirms the **spin-\(\tfrac{1}{2}\)** sector.
+This confirms the **spin-$\tfrac{1}{2}$** sector.
 
 ## Context
 
@@ -36,14 +36,10 @@ This confirms the **spin-\(\tfrac{1}{2}\)** sector.
 - σpair behaves as a quadratic observable (**O26**)
 - a representation-theoretic sector is required (Level III)
 - the effective covariance rank should test the sector dimension
-- the proxy computation in End(\(H_{\mathrm{eff}}\)) yields:
-  \[
-  r_{\mathrm{eff}} = 3
-  \]
+- the proxy computation in End($H_{\mathrm{eff}}$) yields:
+  $r_{\mathrm{eff}} = 3$
   instead of the expected:
-  \[
-  d_\rho^2 = 4
-  \]
+  $d_\rho^2 = 4$
 
 However:
 
@@ -58,20 +54,16 @@ This defines the scope of **O29**.
 The paper establishes that:
 
 > The covariance built from conjugate-pair data is intrinsically confined to
-> the symmetric subspace \(\mathrm{Sym}(V_\rho, \mathbb{C})\),
+> the symmetric subspace $\mathrm{Sym}(V_\rho, \mathbb{C})$,
 > due to the anti-linear Born–Infeld parity constraint.
 
 As a consequence:
 
-\[
-r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}
-\]
+$r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}$
 
 This replaces the O26 target:
 
-\[
-d_\rho^2 \;\longrightarrow\; \frac{d_\rho(d_\rho+1)}{2}
-\]
+$d_\rho^2 \;\longrightarrow\; \frac{d_\rho(d_\rho+1)}{2}$
 
 ## Main Structural Results
 
@@ -79,13 +71,11 @@ d_\rho^2 \;\longrightarrow\; \frac{d_\rho(d_\rho+1)}{2}
 
 *Result.* For all admissible trajectories:
 
-\[
-M_j = w_j \otimes w_j^\top \in \mathrm{Sym}(V_\rho, \mathbb{C})
-\]
+$M_j = w_j \otimes w_j^\top \in \mathrm{Sym}(V_\rho, \mathbb{C})$
 
 Thus:
 
-- the observable does not explore \(\mathrm{End}(V_\rho)\)
+- the observable does not explore $\mathrm{End}(V_\rho)$
 - it is confined to the symmetric subspace
 
 This constraint is:
@@ -99,9 +89,7 @@ This constraint is:
 *Result.* The restriction arises from:
 
 - anti-linear Born–Infeld parity:
-  \[
-  \pi_{q-c}(v) = \pi_c(v)
-  \]
+  $\pi_{q-c}(v) = \pi_c(v)$
   (up to a slowly varying phase)
 
 Thus:
@@ -113,9 +101,7 @@ Thus:
 
 *Result.*
 
-\[
-r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}
-\]
+$r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}$
 
 Thus:
 
@@ -126,30 +112,24 @@ Thus:
 
 *Result.* Inverting the rank formula:
 
-\[
-d_\rho = \frac{-1 + \sqrt{1 + 8 r_{\mathrm{eff}}}}{2}
-\]
+$d_\rho = \frac{-1 + \sqrt{1 + 8 r_{\mathrm{eff}}}}{2}$
 
 For:
 
-\[
-r_{\mathrm{eff}} = 3 \;\Rightarrow\; d_\rho = 2
-\]
+$r_{\mathrm{eff}} = 3 \;\Rightarrow\; d_\rho = 2$
 
 Thus:
 
-- the spin-\(\tfrac{1}{2}\) sector is uniquely identified
+- the spin-$\tfrac{1}{2}$ sector is uniquely identified
 - no ambiguity remains
 
 ### 5. Reformulation of O26 Criterion
 
 *Result.* The correct falsifiability condition becomes:
 
-- not \(r_{\mathrm{eff}} = d_\rho^2\)
+- not $r_{\mathrm{eff}} = d_\rho^2$
 - but:
-  \[
-  r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}
-  \]
+  $r_{\mathrm{eff}} = \frac{d_\rho(d_\rho+1)}{2}$
 
 Thus:
 
@@ -160,20 +140,16 @@ Thus:
 
 The computation confirms:
 
-- \(r_{\mathrm{eff}} = 3\) across all pairs
-- zero inter-pair variance at \(q = 61, 151\)
-- modal consistency at \(q = 101\) (multi-sample confirmed)
+- $r_{\mathrm{eff}} = 3$ across all pairs
+- zero inter-pair variance at $q = 61, 151$
+- modal consistency at $q = 101$ (multi-sample confirmed)
 
 Additional observations:
 
 - eigenvalue structure:
-  \[
-  [1 : \tfrac{1}{2} : \tfrac{1}{2}]
-  \]
+  $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$
 - symmetry ratio small but non-zero:
-  \[
-  \|M - M^\top\| / \|M\| \sim 10^{-2}
-  \]
+  $\|M - M^\top\| / \|M\| \sim 10^{-2}$
 
 Thus:
 
@@ -201,7 +177,7 @@ No external structure is imposed.
 **O29** provides the structural resolution of the representation problem:
 
 - explains the rank discrepancy observed in O28
-- identifies the correct observable space (\(\mathrm{Sym}(V_\rho)\))
+- identifies the correct observable space ($\mathrm{Sym}(V_\rho)$)
 - derives the symmetric rank formula
 - enables unique sector identification
 - reformulates the O26 falsifiability criterion
@@ -225,15 +201,15 @@ More precisely, the paper:
 
 - symmetric constraint (proved)
 - symmetric rank formula (proved)
-- inversion for \(d_\rho\) (analytic)
+- inversion for $d_\rho$ (analytic)
 - corrected falsifiability criterion
 - numerical confirmation across primes
 
 ### Remaining open problems
 
-- analytical proof of \(\dim V_\rho = 2\)
+- analytical proof of $\dim V_\rho = 2$
 - extension to larger primes
-- full \(d_\rho^2\) measurement via independent blocks
+- full $d_\rho^2$ measurement via independent blocks
 - analytical derivation of eigenvalue ratios
 
 ## Interpretation of the Result
@@ -269,7 +245,7 @@ Thus:
 - identification of the correct observable space
 - symmetric constraint from parity
 - symmetric rank formula
-- unique determination of \(d_\rho\)
+- unique determination of $d_\rho$
 - resolution of the O28 discrepancy
 - completion of Level III identification
 
@@ -293,11 +269,11 @@ The sector is:
 
 ### Full-rank observable
 
-Design a protocol probing \(d_\rho^2\).
+Design a protocol probing $d_\rho^2$.
 
 ### Analytical dimension proof
 
-Derive \(\dim V_\rho = 2\) from admissibility.
+Derive $\dim V_\rho = 2$ from admissibility.
 
 ### Large-q regime
 
@@ -305,11 +281,11 @@ Confirm stability for larger primes.
 
 ### Eigenvalue structure
 
-Derive \([1 : 1/2 : 1/2]\) analytically.
+Derive $[1 : 1/2 : 1/2]$ analytically.
 
 ### Representation embedding
 
-Construct explicit embedding into \(V_\rho\).
+Construct explicit embedding into $V_\rho$.
 
 ## Status
 
