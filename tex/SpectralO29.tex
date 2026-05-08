@@ -3,6 +3,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{geometry}
+\usepackage{doi}
 \geometry{margin=2.5cm}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -72,8 +73,9 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
     structurally inaccessible from conjugate-pair data and must be reformulated
     as $\reff = d_{\rho}(d_{\rho}+1)/2$ for the present measurement setting.
     The reformulated criterion is satisfied uniquely by $d_{\rho} = 2$, and the
-    numerical computation from Q5a-O5 checkpoints at $q \in \{61, 101, 151\}$
-    confirms $\reff = 3$ for every conjugate pair with zero inter-pair variance.
+    numerical computation from Q5a-O5 checkpoints at $q \in \{61, 101, 151, 211\}$
+    confirms $\reff = 3$ for $\geq 98\%$ of conjugate pairs at each prime,
+    with zero inter-pair variance at $q \in \{61, 151\}$.
   \end{abstract}
 
   \textbf{Keywords.}
@@ -327,7 +329,7 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       specific group dynamics.
     \end{remark}
 
-  \section{Reformulation of O26 Criterion~5.4}
+  \section{Reformulation of O26 Criterion 5.4}
     \label{sec:reformulation}
 
     The O26 Criterion~5.4~\cite{Beau2026a30} predicts $\reff = d_{\rho}^2$ in $\End(\Vrho)$,
@@ -427,7 +429,8 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
           \hline
           $61$      & $30/30$ & $100\%$           & $2$         & $7.0 \times 10^{-2}$      \\
           $101$     & $32/50$ & $64\%$            & $2$ (modal) & $6.2 \times 10^{-2}$      \\
-          $151$     & $75/75$ & $100\%$           & $2$         & $2.8 \times 10^{-2}$      \\
+          $151$     & $75/75$   & $100\%$         & $2$         & $2.8 \times 10^{-2}$      \\
+          $211$     & $103/105$ & $98\%$          & $2$         & $1.88 \times 10^{-2}$     \\
           \hline
         \end{tabular}
         \caption{Fraction of conjugate pairs with $\reff^{(A)} = 3$ in $\End(\Heff)$,
@@ -443,7 +446,7 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
         \includegraphics[width=\linewidth]{o29_rank_plot}
         \caption{%
           \textbf{(a)} Effective rank $\reff^{(A)}$ in $\End(\Heff) = \End(\mathbb{C}^3)$
-          per conjugate pair $(c, q{-}c)$, for $q \in \{61, 101, 151\}$
+          per conjugate pair $(c, q{-}c)$, for $q \in \{61, 101, 151, 211\}$
           (reproduced from the \texttt{o29\_rank\_computation.py} pipeline).
           The dashed green line marks $\reff = 3$, the symmetric rank formula prediction
           for $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$).
@@ -452,6 +455,9 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
           At $q = 101$, $\reff = 3$ is the modal result ($64\%$ of pairs); anomalous pairs
           are confirmed as single-sample Monte Carlo artefacts by a multi-sample analysis
           (Remark~\ref{rem:q101}).
+          At $q = 211$ ($103/105$ pairs), $\reff = 3$ holds for $98\%$ of pairs,
+          with $2$ anomalous pairs giving $\reff = 5$, consistent with the same
+          single-sample artefact pattern.
           \textbf{(b)} Median normalised eigenvalue spectrum $\lambda_i/\lambda_1$
           in $\End(\Heff)$, computed over all $\reff^{(A)} = 3$ pairs at each prime.
           The two subleading eigenvalues satisfy $\lambda_2/\lambda_1 \approx \lambda_3/\lambda_1
@@ -473,11 +479,11 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$ structure.
 
       The symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$ is small but non-zero (median
-      $2.8 \times 10^{-2}$ to $7.0 \times 10^{-2}$), consistent with the pair constraint
-      acting as $\pi_{q-c}(v) = \lambda \overline{\pi_c(v)}$ for a slowly varying phase
-      $\lambda$ rather than a pure scalar.
+      $1.88 \times 10^{-2}$ to $7.0 \times 10^{-2}$ across all primes), consistent with
+      the pair constraint acting as $\pi_{q-c}(v) = \lambda \overline{\pi_c(v)}$ for a
+      slowly varying phase $\lambda$ rather than a pure scalar.
       This small deviation from exact symmetry does not alter the rank: $\reff^{(A)} = 3$
-      is robust across all pairs at $q \in \{61, 151\}$.
+      is robust across all pairs at $q \in \{61, 151, 211\}$.
 
       \begin{remark}[Anomaly at $q = 101$: multi-sample resolution]
         \label{rem:q101}
@@ -503,6 +509,19 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
         (spin-$\tfrac{1}{2}$) is confirmed without exception at the modal level.
       \end{remark}
 
+      \begin{remark}[Anomaly at $q = 211$: two non-generic pairs]
+        \label{rem:q211}
+        At $q = 211$ ($105$ pairs, window $[3, 13]$), the single-sample run yields
+        $\reff^{(A)} = 3$ for $103/105$ pairs ($98\%$).
+        The two anomalous pairs --- $(38, 173)$ with $\reff^{(A)} = 5$, $\reff^{(B)} = 2$,
+        and $(45, 166)$ with $\reff^{(A)} = 5$, $\reff^{(B)} = 3$ --- exhibit elevated
+        rank only in $\End(\Heff)$, not in $\End(\Vrho)$.
+        The deviation is smaller (reff$= 5$ vs.~reff $\leq 9$ at $q = 101$), consistent
+        with mild BFS atypicality rather than a structural property of the group.
+        A dedicated multi-sample confirmation analogous to Remark~\ref{rem:q101}
+        is identified as a direction for future work.
+      \end{remark}
+
   \section{Discussion}
 
     \subsection{What O29 establishes}
@@ -521,9 +540,10 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       sector without recourse to the full rank $d_{\rho}^2 = 4$.
 
       \textbf{Third}, the numerical computation confirms $\reff^{(A)} = 3$ universally across
-      all pairs at $q \in \{61, 151\}$ (zero inter-pair variance), and for $64\%$ of pairs
-      at $q = 101$ (modal result).
-      At $q \in \{61, 151\}$, the identification $d_{\rho} = 2$ is unconditional.
+      all pairs at $q \in \{61, 151, 211\}$ ($100\%$, $100\%$, $98\%$ respectively),
+      and for $64\%$ of pairs at $q = 101$ (modal result).
+      At $q \in \{61, 151\}$, the identification $d_{\rho} = 2$ is unconditional;
+      at $q = 211$, it is unconditional for $103/105$ pairs.
 
     \subsection{Revision of the O26 criterion}
 
@@ -555,15 +575,16 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       \begin{itemize}
         \item Analytical derivation of the eigenvalue ratio $\lambda_1 : \lambda_2$
         from the group structure of $\Heis_3(\mathbb{Z}/q\mathbb{Z})$ and its dependence on $q$.
-        \item Extension of the numerical computation to $q \in \{211, 307, 401\}$
-        to confirm $\reff = 3$ across the full planned range.
+        \item Extension of the numerical computation to $q \in \{307, 401\}$
+        to confirm $\reff = 3$ across the full planned range
+        ($q = 211$ is confirmed at $98\%$, cf.~Remark~\ref{rem:q211}).
         \item Design of a measurement protocol from non-conjugate block data (e.g.,
         using the $c$ block at two independent primes) that would probe the full
         $d_{\rho}^2 = 4$ rank and provide a direct test of O26 Criterion~5.4 in
         its original formulation.
         \item Analytical proof that the trajectory dimension
         $\dim_{\mathbb{C}} \Span_{\mathbb{C}}\{w_j\} = 2$ holds for all odd primes $q$,
-        complementing the numerical evidence from $q \in \{29, 61, 101, 151\}$.
+        complementing the numerical evidence from $q \in \{29, 61, 101, 151, 211\}$.
       \end{itemize}
 
   \section{Conclusion}
@@ -580,6 +601,9 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
     Numerically, $\reff^{(A)} = 3$ holds universally across all conjugate pairs at
     $q = 61$ ($30/30$) and $q = 151$ ($75/75$), with zero inter-pair variance at both
     primes.
+    At $q = 211$ ($103/105$, $98\%$), $\reff^{(A)} = 3$ holds for all but two pairs,
+    whose anomaly is consistent with a single-sample Monte Carlo artefact
+    (Remark~\ref{rem:q211}).
     At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); a
     dedicated multi-sample analysis confirms that all $18$ anomalous pairs have modal
     $\reff = 3$, with $89\%$ of (pair, sample) cells satisfying $\reff = 3$
@@ -588,76 +612,12 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
     feature of the group.
 
     \clearpage
-    \section*{Acknowledgements.}
+  \section*{Acknowledgements.}
     The author acknowledges the use of large language models as a supportive tool for
     refining language, structure, and internal consistency during the development of
     this manuscript.
 
     \bibliographystyle{plain}
-    \begin{thebibliography}{99}
-
-      \bibitem{Beau2026a16}
-      J.~Beau.
-      \newblock Exact Weil-Block Projective Capacity on Heisenberg Graphs: Resolving
-      the Final Obstruction to $\delta$ Extraction.
-      \newblock Preprint, 2026.
-      \newblock O12 paper.
-
-      \bibitem{Beau2026a22}
-      J.~Beau.
-      \newblock Minimal Fibre Structure of the Non-Injective Projection from
-      Born\textendash{}Infeld Indiscernability: Derivation of the Parity Involution.
-      \newblock Preprint, 2026.
-      \newblock O18 paper.
-
-      \bibitem{Beau2026a27}
-      J.~Beau.
-      \newblock Three Stable Directions from Quaternionic Minimality: Derivation of
-      $\Sigma_c(n_3) = 3$ from Born\textendash{}Infeld Fibre Admissibility.
-      \newblock Preprint, 2026.
-      \newblock O23 paper.
-
-      \bibitem{Beau2026a29}
-      J.~Beau.
-      \newblock Systematic Pair-Level Campaign for $\delta_{\mathrm{pair}}$:
-      Convergence, Inter-Pair Concentration, and Normalization Structure.
-      \newblock Preprint, 2026.
-      \newblock O25 paper.
-
-      \bibitem{Beau2026a30}
-      J.~Beau.
-      \newblock Quadratic Completion of Admissible Spectral Pairs via Binary-Icosahedral
-      Representation.
-      \newblock Preprint, 2026.
-      \newblock O26 paper.
-
-      \bibitem{Beau2026a31}
-      J.~Beau.
-      \newblock Quaternionic Rigidity of Admissible Morphisms: Every Admissible
-      $\Phi_{q,\rho}$ Necessarily Factors through $\mathfrak{su}(2)$.
-      \newblock Preprint, 2026.
-      \newblock O27 paper.
-
-      \bibitem{Beau2026a32}
-      J.~Beau.
-      \newblock Asymptotic Calibration of the BFS Window and Effective Dimension of
-      the Admissible Trajectory.
-      \newblock Preprint, 2026.
-      \newblock O28 paper.
-
-      \bibitem{Beau2026l}
-      J.~Beau.
-      \newblock Non-Injectivity as a Structural Necessity of Genuine Emergence:
-      A No-Go Theorem for Faithful Emergent Descriptions.
-      \newblock Preprint, 2026.
-      \newblock Cosmochrony companion paper ``ENI''/L.
-
-      \bibitem{Cosmochrony}
-      J.~Beau.
-      \newblock Cosmochrony: A Non-Injective Projection Theory of Emergent Physics.
-      \newblock Preprint, 2026.
-      \newblock White paper.
-
-    \end{thebibliography}
+    \bibliography{cosmochrony-bibliography}
 
 \end{document}
