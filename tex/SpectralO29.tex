@@ -496,8 +496,12 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
         replaying $M = 5$ independent samples for each of the $18$ anomalous pairs
         (using per-pair deterministic seeds).
 
-        The result is unambiguous: all $18$ anomalous pairs have modal $\reff = 3$,
-        and $89\%$ of the $18 \times 5 = 90$ (pair, sample) cells satisfy $\reff = 3$.
+        All $18$ anomalous pairs have modal $\reff = 3$;
+        $76.7\%$ of the $18 \times 5 = 90$ (pair, sample) cells satisfy $\reff = 3$
+        (an earlier partial run on $11$ pairs gave $89\%$, now superseded).
+        Some pairs show persistent variance: pair $(50,51)$ has mean $\reff = 4.6$
+        and pair $(26,75)$ has mean $\reff = 3.8$, reflecting genuine seed-sensitivity
+        at $q=101$ rather than a pure isolated artefact.
         The distribution of non-modal values is consistent with high-$\reff$ outliers
         arising from atypical BFS blocks: for example, pair $(8, 93)$ gives
         $\{3, 3, 3, 3, 8\}$, where the single reff$= 8$ sample corresponds to a
@@ -606,7 +610,7 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
     (Remark~\ref{rem:q211}).
     At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); a
     dedicated multi-sample analysis confirms that all $18$ anomalous pairs have modal
-    $\reff = 3$, with $89\%$ of (pair, sample) cells satisfying $\reff = 3$
+    $\reff = 3$, with $76.7\%$ of (pair, sample) cells satisfying $\reff = 3$
     (Remark~\ref{rem:q101}).
     The $q = 101$ anomaly is a single-sample Monte Carlo artefact, not a structural
     feature of the group.
