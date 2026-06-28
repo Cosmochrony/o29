@@ -1,10 +1,14 @@
 \documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{doi}
 \geometry{margin=2.5cm}
+\input{glyphtounicode}
+\pdfgentounicode=1
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -21,6 +25,7 @@
 \DeclareMathOperator{\Heis}{Heis}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Span}{span}
+\newcommand{\su}{\mathfrak{su}}
 
 \newcommand{\Heff}{H_{\mathrm{eff}}}
 \newcommand{\Vrho}{V_{\rho}}
@@ -28,8 +33,8 @@
 \newcommand{\reff}{r_{\mathrm{eff}}}
 \newcommand{\dpair}{\delta_{\mathrm{pair}}}
 
-\title{Spin-$\tfrac{1}{2}$ Sector Identification via the Symmetric Rank Formula:\\
-Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
+\title{The $\reff = 3$ Invariant as the Adjoint $\su(2)$ (Spin-$1$) Structure of $\Heff$:\\
+Why Test~4 Identifies the Carrier, Not the Spin-$\tfrac{1}{2}$ Target}
 
 \author{J\'er\^ome Beau\\
 \small Independent Researcher\\
@@ -41,46 +46,35 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
   \maketitle
 
   \begin{abstract}
-    Paper O28~\cite{Beau2026a32} established that the per-pair covariance $\Cc$
-    in $\End(\Heff)$ has rank $\reff = 3$ with invariant eigenvalue structure
-    $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$.
-    The present paper provides the complete analytical explanation of this result
-    and carries out the sector identification required for O26~\cite{Beau2026a30}.
-    We prove that the Born\textendash{}Infeld parity involution $c \leftrightarrow q{-}c$
-    of O18~\cite{Beau2026a22}, which implies $\pi_{q-c}(v) = \overline{\pi_c(v)}$
-    in the canonical basis of $\Heff$ (up to a slowly varying phase factor, as discussed
-    in Section~\ref{sec:results}), forces every outer product
-    $M_j = \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}$ to lie in the complex symmetric
-    subspace $\Sym(\Vrho, \mathbb{C})$, where
-    $\Vrho = \Span_{\mathbb{C}}\{\pi_c(v_j)\} \subset \Heff$ is the trajectory subspace.
-    This is an algebraic identity that holds independently of the specific values of
-    $\pi_c(v_j)$ (the symmetry structure requires no genericity assumption;
-    the rank formula of Theorem~\ref{thm:rank} additionally requires the trajectory
-    to span $\Vrho$, which is verified numerically).
-    The resulting covariance rank satisfies the \emph{symmetric rank formula}
-    \begin{equation*}
-      \reff = \frac{d_{\rho}(d_{\rho}+1)}{2},
-    \end{equation*}
-    where $d_{\rho} = \dim_{\mathbb{C}} \Vrho$ is the complex dimension of the
-    trajectory subspace.
-    The observed value $\reff = 3$ has the unique positive integer solution $d_{\rho} = 2$,
-    confirming the spin-$\tfrac{1}{2}$ sector candidate without ambiguity.
-    This result holds in both $\End(\Heff)$ (proxy computation of O28) and
-    $\End(\Vrho)$ (correct O26 test space): restricting to $\End(\Vrho)$
-    does not change the rank, since the symmetric constraint is intrinsic to
-    the pair structure.
-    We show that the O26 Criterion~5.4 target of $\reff = d_{\rho}^2 = 4$ is
-    structurally inaccessible from conjugate-pair data and must be reformulated
-    as $\reff = d_{\rho}(d_{\rho}+1)/2$ for the present measurement setting.
-    The reformulated criterion is satisfied uniquely by $d_{\rho} = 2$, and the
-    numerical computation from Q5a-O5 checkpoints at $q \in \{61, 101, 151, 211\}$
-    confirms $\reff = 3$ for $\geq 98\%$ of conjugate pairs at each prime,
-    with zero inter-pair variance at $q \in \{61, 151\}$.
+    Paper O28~\cite{Beau2026a32} established that the per-pair covariance $\Cc$ in $\End(\Heff)$ has rank $\reff = 3$
+    with invariant eigenvalue structure $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$.
+    The present paper gives the structural explanation of this result.
+    The value $\reff = 3$ is real and stable across primes; the Born\textendash{}Infeld parity involution
+    $c \leftrightarrow q{-}c$ of O18~\cite{Beau2026a22} acts anti-linearly, so the conjugate-pair outer products
+    $M_j = \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}$ are (up to a small, $q$-decreasing defect) complex symmetric; and the
+    O26 target $\reff = d_\rho^2 = 4$ is structurally inaccessible from conjugate-pair data.
+    A direct characterisation on the O25/Q5a checkpoints shows that the trajectory
+    $\{w_j = \pi_c(v_j)\}$ spans \emph{all three} complex dimensions of $\Heff$ (singular ratios
+    $\sigma_3/\sigma_1 \simeq 0.7\text{--}1.0$, not $< 10^{-2}$), and that $\reff = 3$ is a \emph{hard
+    $6 \to 3$ collapse} of the Veronese (squaring) image: the symmetric squares $w_j \otimes w_j$ satisfy exactly
+    three independent quadratic relations.
+    The three constraint forms are traceless, and their commutators span exactly $\mathfrak{so}(3)$; the Schur
+    commutant of the action on $\Heff$ is one-dimensional, so $\Heff = \mathbb{C}^3$ is \emph{irreducible}.
+    This identifies $\reff = 3$ as the invariant of the \emph{adjoint} action $\Heff \simeq \su(2)$ of O23/O27 ---
+    the spin-$1$ (vector) representation --- not as the symmetric-rank inversion $3 = d_\rho(d_\rho+1)/2$ for
+    $d_\rho = 2$.
+    Since the adjoint is irreducible, $\Heff$ contains no two-dimensional invariant subspace: the spin-$\tfrac{1}{2}$
+    space $\Vrho$ is the \emph{Schur target} of the morphism $\bar\Phi : \su(2) \to \Vrho$ (O27), not a subspace of
+    $\Heff$, and is invisible to Test~4.
+    Consequently Test~4 confirms the carrier (spin-$1$ on $\Heff$) and the inaccessibility of $d_\rho^2 = 4$, but does
+    not by itself identify the spin-$\tfrac{1}{2}$ sector; a genuine spin-$\tfrac{1}{2}$ test requires an independent
+    observable on $\Vrho$ (the locking-broken protocol of Section~\ref{sec:results} reaches the full $d_\rho^2 = 4$ and
+    motivates it).
   \end{abstract}
 
   \textbf{Keywords.}
-  spectral admissibility; Weil representation; Heisenberg graphs; covariance operator;
-  symmetric outer products; symmetric rank formula; spin-$\tfrac{1}{2}$ sector;
+  spectral admissibility; Weil representation; Heisenberg graphs; covariance operator; adjoint representation;
+  $\su(2)$; spin-$1$ vector representation; irreducibility; Schur commutant; Veronese collapse;
   Born\textendash{}Infeld parity; effective dimension
 
   \clearpage
@@ -91,68 +85,66 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
 
     \subsection{What O25\textendash{}O28 established}
 
-      Paper O25~\cite{Beau2026a29} confirmed that $\dpair$ is a structural invariant of the
-      Weil representation of $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, with inter-pair variance
-      decreasing monotonically with $q$.
-      Paper O26~\cite{Beau2026a30} established a dictionary between conjugate Weil blocks
-      and rank-one matrix coefficients in a representation space $\Vrho$, and formulated the
-      key falsifiability criterion: the effective rank of the per-pair covariance in
-      $\End(\Vrho)$ should equal $d_{\rho}^2 = 4$ for the spin-$\tfrac{1}{2}$ candidate
-      (Criterion~5.4 of~\cite{Beau2026a30}).
+      Paper O25~\cite{Beau2026a29} confirmed that $\dpair$ is a structural invariant of the Weil representation of
+      $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, with inter-pair variance decreasing monotonically with $q$.
+      Paper O26~\cite{Beau2026a30} established a dictionary between conjugate Weil blocks and rank-one matrix
+      coefficients in a representation space $\Vrho$, and formulated the key falsifiability criterion: the effective
+      rank of the per-pair covariance in $\End(\Vrho)$ should equal $d_{\rho}^2 = 4$ for the spin-$\tfrac{1}{2}$
+      candidate (Criterion~5.4 of~\cite{Beau2026a30}).
       Paper O27~\cite{Beau2026a31} proved unconditionally that any admissible morphism
-      $\Phi_{q,\rho} : V_q \to \Vrho$ satisfying the three structural constraints factors
-      uniquely through $\mathfrak{su}(2)$, closing the structural implication chain
+      $\Phi_{q,\rho} : V_q \to \Vrho$ satisfying the three structural constraints factors uniquely through $\su(2)$,
+      closing the structural implication chain
       \begin{equation}
         \text{emergence} \Rightarrow \text{non-injectivity}~\cite{Beau2026l}
         \Rightarrow \text{pair structure} \Rightarrow \text{quadratic form}
-        \Rightarrow \mathfrak{su}(2).
+        \Rightarrow \su(2).
         \label{eq:chain}
       \end{equation}
 
-      Paper O28~\cite{Beau2026a32} performed the proxy computation of Criterion~5.4
-      in $\End(\Heff)$, using the per-block admissible projections
-      $\pi_c(v) \in \Heff = \mathbb{C}^3$ from the Q5a-O5 checkpoints.
-      The result was $\reff = 3$ with eigenvalue structure $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$,
-      invariant across all pairs and all $q \in \{29, 61, 101, 151\}$.
-      O28 observed that this falls short of the O26 prediction $d_{\rho}^2 = 4$, and
-      attributed the gap to the fact that the computation was carried out in $\End(\Heff)$
-      rather than $\End(\Vrho)$, leaving the identification of $\Vrho \subset \Heff$ as
-      the object of O29.
+      Paper O28~\cite{Beau2026a32} performed the proxy computation of Criterion~5.4 in $\End(\Heff)$, using the
+      per-block admissible projections $\pi_c(v) \in \Heff = \mathbb{C}^3$ from the Q5a-O5 checkpoints.
+      The result was $\reff = 3$ with eigenvalue structure $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$, invariant across all
+      pairs and all $q \in \{29, 61, 101, 151\}$.
+      O28 observed that this falls short of the O26 prediction $d_{\rho}^2 = 4$, and left the interpretation of the
+      value $3$ --- and of the relation between $\End(\Heff)$ and $\End(\Vrho)$ --- as the object of O29.
 
     \subsection{Scope and outcome of O29}
+      \label{sec:scope}
 
-      The present paper shows that the gap between $\reff = 3$ and $d_{\rho}^2 = 4$ is not
-      a consequence of using $\End(\Heff)$ instead of $\End(\Vrho)$, but a structural
-      property of conjugate-pair data that persists after the restriction.
-      The correct interpretation is: the Born\textendash{}Infeld parity constraint is
-      anti-linear and forces the outer products $M_j$ into the complex symmetric
-      subspace $\Sym(\Vrho, \mathbb{C}) \subsetneq \End(\Vrho)$, reducing the accessible
-      rank from $d_{\rho}^2$ to $d_{\rho}(d_{\rho}+1)/2$.
-      The observed $\reff = 3$ then identifies $d_{\rho} = 2$ uniquely via the inverted
-      symmetric rank formula, confirming the spin-$\tfrac{1}{2}$ sector.
+      This paper explains the value $\reff = 3$ structurally and identifies what Test~4 measures.
+      A direct characterisation on the checkpoints (Sections~\ref{sec:structural}\textendash{}\ref{sec:vrho}) shows
+      that the trajectory $\{w_j\}$ spans all of $\Heff = \mathbb{C}^3$, and that the rank $3$ is a hard algebraic
+      collapse of the Veronese squaring image whose constraint forms span $\mathfrak{so}(3)$.
+      Combined with O23/O27, this identifies $\reff = 3$ as the invariant of the irreducible \emph{adjoint} action
+      $\Heff \simeq \su(2)$ --- the spin-$1$ vector representation.
+      The spin-$\tfrac{1}{2}$ space $\Vrho$ is the Schur target of $\bar\Phi : \su(2) \to \Vrho$ and is not a subspace
+      of $\Heff$; Test~4, which only sees data in $\Heff$, cannot identify it.
 
-      Section~\ref{sec:structural} establishes the symmetric rank formula analytically.
-      Section~\ref{sec:vrho} identifies $\Vrho$ and the $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$
-      eigenvalue structure from the trajectory geometry.
-      Section~\ref{sec:reformulation} reformulates O26 Criterion~5.4 for conjugate-pair data.
-      Section~\ref{sec:results} reports the numerical confirmation.
+      The analysis rests on three facts: (i) $\reff = 3$ is real and stable; (ii) the Born\textendash{}Infeld parity
+      is anti-linear and forces the conjugate-pair outer products into the symmetric subspace, up to a small,
+      $q$-decreasing defect (Theorem~\ref{thm:sym}); (iii) the target $d_\rho^2 = 4$ is inaccessible from
+      conjugate-pair data (Section~\ref{sec:reformulation}).
+
+      Section~\ref{sec:structural} states the symmetric-square structure and the role of the trajectory dimension.
+      Section~\ref{sec:vrho} characterises the variety carrying the $6 \to 3$ collapse and proves irreducibility.
+      Section~\ref{sec:reformulation} reformulates O26 Criterion~5.4 as a carrier test.
+      Section~\ref{sec:results} reports the numerical evidence.
 
   \section{Setup and Notation}
     \label{sec:setup}
 
     We follow the notation of O25~\cite{Beau2026a29} and O28~\cite{Beau2026a32}.
-    Let $q$ be an odd prime, $G_q = \Heis_3(\mathbb{Z}/q\mathbb{Z})$, and let
-    $\pi_c : V_q \to \Heff = \mathbb{C}^3$ be the admissible projection of the
-    character-$c$ Weil block.
-    Write $w_j := \pi_c(v_j) \in \Heff$ for the admissible projections along the
-    fitting window $[n_0, n_1]$ (auto-calibrated by O12~\cite{Beau2026a16}).
-    The Born\textendash{}Infeld parity result of O18~\cite{Beau2026a22},
-    $\rho_{q-c} = \bar{\rho}_c$, implies
+    Let $q$ be an odd prime, $G_q = \Heis_3(\mathbb{Z}/q\mathbb{Z})$, and let $\pi_c : V_q \to \Heff = \mathbb{C}^3$
+    be the admissible projection of the character-$c$ Weil block.
+    Write $w_j := \pi_c(v_j) \in \Heff$ for the admissible projections along the fitting window $[n_0, n_1]$
+    (auto-calibrated by O12~\cite{Beau2026a16}).
+    The Born\textendash{}Infeld parity result of O18~\cite{Beau2026a22}, $\rho_{q-c} = \bar{\rho}_c$, implies
     \begin{equation}
       \pi_{q-c}(v_j) = \overline{w_j}
       \label{eq:parity}
     \end{equation}
-    in the canonical basis of $\Heff$ fixed by O23~\cite{Beau2026a27}.
+    in the canonical basis of $\Heff$ fixed by O23~\cite{Beau2026a27}, up to a small phase defect quantified in
+    Section~\ref{sec:results}.
     The per-pair outer product and covariance are
     \begin{equation}
       M_j := \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}
@@ -162,233 +154,194 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
       \Cc := \frac{1}{N} \sum_{j=n_0}^{n_1} \mathrm{vec}(M_j)\, \mathrm{vec}(M_j)^{\dagger},
       \label{eq:outer}
     \end{equation}
-    where the last equality in the outer product uses~\eqref{eq:parity}
-    ($\bar{w}^{\,*} = w^{\top}$ for a column vector $w$).
+    where the last equality in the outer product uses~\eqref{eq:parity} ($\bar{w}^{\,*} = w^{\top}$ for a column
+    vector $w$).
 
-  \section{Structural Analysis: the Symmetric Rank Formula}
+  \section{Structural Analysis: Symmetric Squares and the Hypothesis that Fails}
     \label{sec:structural}
 
     \begin{theorem}[Symmetric outer products]
       \label{thm:sym}
-      Under the Born\textendash{}Infeld parity constraint~\eqref{eq:parity}, every outer
-      product satisfies
+      Under the Born\textendash{}Infeld parity constraint~\eqref{eq:parity}, every outer product satisfies
       \begin{equation}
         M_j = w_j w_j^{\top} \in \Sym(\Heff, \mathbb{C}),
         \label{eq:sym}
       \end{equation}
       the complex symmetric matrices on $\Heff$.
-      This is an algebraic identity: $(M_j)_{ab} = (w_j)_a(w_j)_b = (M_j)_{ba}$ for all
-      $a, b$ and all $w_j$.
-      In particular,~\eqref{eq:sym} is not lifted by any complex-linear reparametrisation
-      of the blocks within the class of admissible complex-linear transformations.
+      This is an algebraic identity: $(M_j)_{ab} = (w_j)_a(w_j)_b = (M_j)_{ba}$ for all $a, b$ and all $w_j$.
     \end{theorem}
 
     \begin{proof}
-      Direct computation from~\eqref{eq:outer}: using the column-vector convention
-      $\bar{w}^{\,*} = w^{\top}$ (which gives $\pi_{q-c}(v_j)^{*} = \overline{w_j}^{\,*} = w_j^{\top}$),
-      $(M_j)_{ab} = (w_j)_a\,\overline{(w_j)}_b^{\,*}
-      = (w_j)_a\,(w_j)_b$.
-      Symmetry in $a, b$ follows immediately.
-      The constraint is a pointwise algebraic identity in $w_j$; it does not depend on any
-      averaging or statistical property of the trajectory.
-      Any complex-linear reparametrisation $w_j \mapsto A w_j$ (with $A$ invertible) gives
-      $M_j \mapsto (A w_j)(A w_j)^{\top} = A (w_j w_j^{\top}) A^{\top}$, which remains
-      symmetric.
+      Direct computation from~\eqref{eq:outer}: using the column-vector convention $\bar{w}^{\,*} = w^{\top}$,
+      $(M_j)_{ab} = (w_j)_a\,(w_j)_b$, symmetric in $a, b$.
     \end{proof}
 
-    \begin{remark}[Anti-linearity is the obstruction]
+    \begin{remark}[Anti-linearity is the obstruction to $d_\rho^2$]
       \label{rem:antilinear}
       The constraint $\pi_{q-c}(v) = \overline{\pi_c(v)}$ is anti-linear.
-      For a complex-linear pair constraint $\pi_{q-c}(v) = U \pi_c(v)$ (with $U$ unitary),
-      the outer product $M_j = w_j \otimes (U w_j)^{*} = w_j w_j^{\dagger} U^{\dagger}$
-      would be a general rank-one element of $\End(\mathbb{C}^3)$ and not confined to
-      $\Sym(\Heff, \mathbb{C})$.
-      The present situation is the opposite: $\pi_{q-c}(v) = \overline{\pi_c(v)}$ is
-      anti-linear, so no complex-linear operation (change of basis, morphism, or
-      projection onto a subspace) can convert it into a complex-linear constraint.
-      The symmetric structure is a fundamental property of Born\textendash{}Infeld
-      parity-conjugate data.
+      For a complex-linear pair constraint $\pi_{q-c}(v) = U \pi_c(v)$ (with $U$ unitary), the outer product
+      $M_j = w_j \otimes (U w_j)^{*} = w_j w_j^{\dagger} U^{\dagger}$ would be a general rank-one element of
+      $\End(\mathbb{C}^3)$.
+      The present situation is the opposite: $\pi_{q-c}(v) = \overline{\pi_c(v)}$ is anti-linear, so no complex-linear
+      operation converts it into a complex-linear constraint.
+      This is the reason the original O26 target $d_\rho^2$ is unreachable from conjugate-pair data; see
+      Section~\ref{sec:reformulation} and the locking-broken control of Section~\ref{sec:results}.
+      Empirically the parity holds up to a small, $q$-decreasing defect (Section~\ref{sec:results}), so~\eqref{eq:sym}
+      holds approximately rather than exactly.
     \end{remark}
 
-    \begin{theorem}[Symmetric rank formula]
+    \begin{theorem}[Symmetric span of a trajectory]
       \label{thm:rank}
-      Let $\Vrho := \Span_{\mathbb{C}}\{w_j : j \in [n_0, n_1]\} \subset \Heff$ with
-      $d_{\rho} := \dim_{\mathbb{C}} \Vrho$.
-      For a generic trajectory within $\Vrho$
-      (condition numerically verified by the full-rank SVD spectrum of the trajectory
-      matrix $W_c = [w_{n_0}, \ldots, w_{n_1}]$ across all tested primes,
-      with $\sigma_3/\sigma_1 < 10^{-2}$ confirming $\dim_{\mathbb{C}}\Vrho = 2$
-      and $\sigma_1/\sigma_2$ bounded away from zero),
-      the effective rank of $\Cc$ satisfies
+      Let $\Vrho := \Span_{\mathbb{C}}\{w_j\} \subset \Heff$ with $d_{\rho} := \dim_{\mathbb{C}}\Vrho$.
+      By Theorem~\ref{thm:sym} the symmetric squares $\{w_j w_j^{\top}\}$ lie in $\Sym(\Vrho, \mathbb{C})$, of
+      dimension
       \begin{equation}
-        \reff = \frac{d_{\rho}(d_{\rho}+1)}{2}.
+        \frac{d_{\rho}(d_{\rho}+1)}{2}.
         \label{eq:sym-rank}
       \end{equation}
+      The effective rank $\reff$ therefore depends on the trajectory dimension $d_\rho$ and on the geometry of the
+      squares within $\Sym(\Vrho, \mathbb{C})$.
+      Both are read directly from the data in Section~\ref{sec:vrho}: $d_\rho = 3$
+      ($\sigma_3/\sigma_1 \simeq 0.7\text{--}1.0$), and the squares occupy a three-dimensional,
+      $\mathfrak{so}(3)$-structured subspace of the six-dimensional $\Sym(\Heff, \mathbb{C})$.
     \end{theorem}
 
-    \begin{proof}
-      By Theorem~\ref{thm:sym}, $M_j = w_j w_j^{\top} \in \Sym(\Vrho, \mathbb{C})$,
-      the complex symmetric endomorphisms supported on $\Vrho$.
-      As a complex vector space, $\Sym(\Vrho, \mathbb{C})$ has dimension
-      $d_{\rho}(d_{\rho}+1)/2$: a basis is $\{e_i e_j^{\top} + e_j e_i^{\top} : i \leq j\}$
-      for any orthonormal basis $\{e_i\}$ of $\Vrho$.
-      The rank-one elements $\{w w^{\top} : w \in \Vrho\}$ are the symmetric rank-one
-      tensors, and their complex span equals $\Sym(\Vrho, \mathbb{C})$ for any $\Vrho$
-      of dimension $d_{\rho} \geq 1$ (this is a standard algebraic identity: every
-      symmetric matrix is a sum of symmetric rank-one matrices, and the rank-one symmetric
-      matrices span $\Sym$).
-      For a generic trajectory $\{w_j\}$ spanning all of $\Vrho$ (verified numerically,
-      see above), the covariance $\Cc$
-      has full rank within $\Sym(\Vrho, \mathbb{C})$, giving $\reff = d_{\rho}(d_{\rho}+1)/2$.
-    \end{proof}
-
-    \begin{corollary}[Unique identification of $d_{\rho}$]
+    \begin{corollary}[The carrier is fixed by the $\mathfrak{so}(3)$ structure]
       \label{cor:drho}
-      The equation $d_{\rho}(d_{\rho}+1)/2 = \reff$ has a unique positive integer solution:
+      A bare value $\reff = 3$ does not by itself fix a representation dimension.
+      The arithmetic map
       \begin{equation}
-        d_{\rho} = \frac{-1 + \sqrt{1 + 8\,\reff}}{2}.
+        d = \frac{-1 + \sqrt{1 + 8\,\reff}}{2}
         \label{eq:inversion}
       \end{equation}
-      For $\reff = 3$: $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$).
-      For $\reff = 6$: $d_{\rho} = 3$ (spin-$1$).
-      For $\reff = 1$: $d_{\rho} = 1$ (trivial sector).
-      The observed value $\reff = 3$ therefore \emph{uniquely} identifies $d_{\rho} = 2$
-      without ambiguity.
+      presumes that the squares fill $\Sym(\mathbb{C}^d)$ for a trajectory confined to $d$ dimensions, which is not
+      the case here ($d_\rho = 3$, Proposition~\ref{prop:dim}).
+      The carrier is fixed directly by the $\mathfrak{so}(3)$ structure of the constraint forms and the irreducibility
+      of the action (Proposition~\ref{prop:so3}, Corollary~\ref{cor:adjoint}): $\reff = 3$ is the
+      $\dim_{\mathbb{R}}\su(2) = 3$ occurrence that O23~\cite{Beau2026a27} isolates among the distinct meanings of the
+      number $3$.
     \end{corollary}
 
-    \begin{remark}[Rank in $\End(\Vrho)$ equals rank in $\End(\Heff)$]
+    \begin{remark}[Rank in $\End(\Vrho)$ versus $\End(\Heff)$]
       \label{rem:restriction}
-      Since $M_j \in \Sym(\Vrho, \mathbb{C}) \subset \Sym(\Heff, \mathbb{C})$, restricting
-      the covariance to $\End(\Vrho) \cong \End(\mathbb{C}^2)$ does not change the rank:
-      \begin{equation}
-        \reff\bigl(\Cc\text{ in }\End(\Heff)\bigr)
-        = \reff\bigl(\Cc\text{ in }\End(\Vrho)\bigr)
-        = \frac{d_{\rho}(d_{\rho}+1)}{2} = 3.
-        \label{eq:both}
-      \end{equation}
-      The gap between the O28 proxy computation (in $\End(\Heff)$) and the O26 target
-      computation (in $\End(\Vrho)$) is therefore numerically irrelevant: both give
-      $\reff = 3$, and both identify $d_{\rho} = 2$.
+      Projecting the trajectory onto the leading two singular directions of $\Heff$ and forming the covariance in
+      $\End(\mathbb{C}^2)$ gives $\reff = 2$ (eigenvalue spectrum $[1 : \tfrac{1}{2} : 0 : 0]$) for every pair at
+      $q \in \{29, 61\}$ (Section~\ref{sec:results}).
+      The carrier rank $3$ is intrinsic to the full $\End(\Heff)$ and reflects the three-dimensional carrier; it is
+      not reproduced in a two-dimensional subspace.
     \end{remark}
 
-  \section{Identification of $\Vrho$ and the Eigenvalue Structure}
+  \section{The Carrier: the Adjoint Spin-$1$ Representation on $\Heff$}
     \label{sec:vrho}
 
     \begin{proposition}[Trajectory dimension]
       \label{prop:dim}
-      The O28 result $\reff = 3$ in $\End(\Heff)$, combined with the symmetric rank
-      formula~\eqref{eq:sym-rank}, implies $\dim_{\mathbb{C}} \Vrho = 2$.
-      The third direction of $\Heff = \mathbb{C}^3$ is not explored by the trajectory
-      $\{w_j\}$: the BFS fingerprint dynamics are effectively two-dimensional within
-      the three-dimensional admissible subspace.
+      The trajectory $\{w_j\}$ spans all three complex dimensions of $\Heff$.
+      On the checkpoints, the singular values of the trajectory matrix $W_c = [w_{n_0}, \ldots, w_{n_1}]$ satisfy
+      $\sigma_2/\sigma_1, \sigma_3/\sigma_1 \in [0.7, 1.0]$, with $\rank_{10^{-2}} W_c = 3$ for every pair at
+      $q \in \{29, 61\}$.
+      Hence $\dim_{\mathbb{C}}\Span\{w_j\} = 3 = \dim_{\mathbb{C}}\Heff$.
     \end{proposition}
 
-    \begin{proof}
-      From~\eqref{eq:sym-rank}: $d_{\rho}(d_{\rho}+1)/2 = 3$ gives $d_{\rho} = 2$.
-      Therefore $\dim_{\mathbb{C}} \Span\{w_j\} = 2 < 3 = \dim_{\mathbb{C}} \Heff$.
+    \begin{theorem}[Hard $6 \to 3$ Veronese collapse]
+      \label{thm:veronese}
+      The symmetric squares $\{w_j \otimes w_j\}$ span a subspace of $\Sym(\Heff, \mathbb{C}) \cong \mathbb{C}^6$ of
+      dimension exactly $3$: the monomial matrix
+      $\Phi$, with rows $\bigl(w_0^2, w_1^2, w_2^2, w_0 w_1, w_0 w_2, w_1 w_2\bigr)$, has singular spectrum
+      $[1 : {\sim}0.9 : {\sim}0.9 : 0 : 0 : 0]$ with three machine-zero values.
+      Equivalently the $w_j$ lie on the intersection of exactly three conics: there are three independent complex
+      symmetric forms $B_1, B_2, B_3$ with $w_j^{\top} B_k w_j = 0$ for all $j$.
+    \end{theorem}
+
+    \begin{proof}[Numerical proof]
+      Computed on the pooled Q5a-O5 checkpoints (script \texttt{variety\_summary.py}), the three trailing singular
+      values of $\Phi$ are at machine precision for $q \in \{29, 61\}$; the null space has dimension $6 - 3 = 3$.
+      The identity form (the trace direction $w^{\top}w$) lies in the row space, not the null space (residual
+      $5 \times 10^{-16}$), so $w^{\top}w$ is a coordinate of the rank-$3$ image, not a constraint.
     \end{proof}
+
+    \begin{proposition}[The constraint forms span $\mathfrak{so}(3)$; the action is irreducible]
+      \label{prop:so3}
+      The three constraint forms $B_k$ of Theorem~\ref{thm:veronese} are traceless and rank-$2$ (eigenvalues
+      $\{\mu, -\mu, 0\}$).
+      Their commutators $L_k := [B_i, B_j]$ are exactly antisymmetric (residual $\sim 10^{-17}$) with eigenvalues
+      $\{0, +i\mu', -i\mu'\}$, and $\Span\{L_1, L_2, L_3\} = \mathfrak{so}(3)$ exactly (fraction in
+      $\mathfrak{so}(3)$ equal to $1.000$, rank $3$).
+      The Schur commutant of $\{B_k\}$ (equivalently $\{L_k\}$) on $\Heff = \mathbb{C}^3$ is one-dimensional
+      (scalars only) at $q \in \{29, 61\}$.
+      Hence the action is irreducible: $\Heff$ has no nontrivial invariant subspace, in particular no invariant
+      two-dimensional subspace.
+    \end{proposition}
+
+    \begin{proof}[Numerical proof]
+      Direct computation (script \texttt{variety\_summary.py}): traces of the $B_k$ vanish; the commutators are
+      antisymmetric to machine precision and span $\mathfrak{so}(3)$; the linear system $[M, L_k] = 0$ for
+      $k = 1, 2, 3$ has a one-dimensional solution space (the scalars) at both primes.
+      Irreducibility over $\mathbb{C}$ is equivalent to a scalar commutant by Schur's lemma.
+    \end{proof}
+
+    \begin{corollary}[$\Heff \simeq \su(2)$ is the spin-$1$ carrier]
+      \label{cor:adjoint}
+      By O23/O27~\cite{Beau2026a27,Beau2026a31}, the admissible automorphism group of $\Heff$ is $\mathrm{SU}(2)$
+      acting on $\Heff \simeq \su(2)$ by the adjoint action; the adjoint is the three-dimensional irreducible (spin-$1$,
+      vector) representation.
+      Proposition~\ref{prop:so3} realises this action directly from the data: the $\mathfrak{so}(3)$ generators emerge
+      as the commutators of the Veronese constraint forms, and the action is irreducible.
+      Therefore $\reff = 3$ is the invariant of the spin-$1$ carrier $\Heff$, structural label: \emph{structural}
+      (proved at the level of the data via Theorem~\ref{thm:veronese}\textendash{}Proposition~\ref{prop:so3}, and
+      consistent with the proved categorical statement of O27).
+    \end{corollary}
 
     \begin{proposition}[Structural origin of $\lambda_2 = \lambda_3$]
       \label{prop:eigvals}
-      Let $\Vrho = \Span_{\mathbb{C}}\{e_1, e_2\} \subset \mathbb{C}^3$
-      and write $w_j = \alpha_j e_1 + \beta_j e_2$.
-      In the basis $\{e_1 e_1^{\top},\; \tfrac{1}{\sqrt{2}}(e_1 e_2^{\top} + e_2 e_1^{\top}),\;
-      e_2 e_2^{\top}\}$ of $\Sym(\Vrho, \mathbb{C})$, the covariance $\Cc$ has matrix
-      \begin{equation}
-        \Cc \sim \frac{1}{N}\begin{pmatrix}
-                              \sum |\alpha_j|^4 & \sqrt{2}\sum |\alpha_j|^2 \alpha_j\beta_j &
-                              \sum |\alpha_j|^2|\beta_j|^2 \\
-                              \sqrt{2}\sum \alpha_j^{*2}\beta_j^2 & 2\sum |\alpha_j\beta_j|^2 &
-                              \sqrt{2}\sum |\beta_j|^2\alpha_j^{*}\beta_j^{*} \\
-                              \sum |\alpha_j|^2|\beta_j|^2 & \sqrt{2}\sum \alpha_j\beta_j|\beta_j|^2 &
-                              \sum |\beta_j|^4
-        \end{pmatrix}.
-        \label{eq:cov-matrix}
-      \end{equation}
-      When the trajectory is isotropic in $\Vrho$ (equal statistical weight on all directions),
-      the two off-diagonal modes are equienergetic, giving $\lambda_2 = \lambda_3$ exactly.
-      This isotropicity is structurally expected and numerically observed for BFS dynamics
-      on $\Heis_3(\mathbb{Z}/q\mathbb{Z})$, consistent with the rotational symmetry of the
-      Cayley graph generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
+      The two-fold degeneracy $\lambda_2 = \lambda_3$ of the $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$ spectrum is the axial
+      ($\mathrm{U}(1) \subset \mathrm{SO}(3)$) degeneracy of a spin-$1$ carrier with a preferred direction.
+      The linear Hermitian covariance $\langle w\, w^{\dagger} \rangle$ has spectrum $[1 : 0.6 : 0.6]$ at $q = 29$ and
+      $[1 : 0.8 : 0.8]$ at $q = 61$, with $\lambda_2 = \lambda_3$ and a trend towards isotropy $[1:1:1]$ as $q$ grows.
+      The eigenvalue ratio is not a universal algebraic constant but a property of the group dynamics on
+      $\Heis_3(\mathbb{Z}/q\mathbb{Z})$.
     \end{proposition}
 
-    \begin{remark}[Eigenspace decomposition]
-      The three eigenvectors of $\Cc$ (in the basis of $\Sym(\Vrho, \mathbb{C})$) are:
-      (i) the ``radial'' mode $\alpha_j^2 e_1 e_1^{\top} + \beta_j^2 e_2 e_2^{\top}$,
-      with eigenvalue $\lambda_1$; and
-      (ii)--(iii) the real and imaginary parts of the off-diagonal mode
-      $e_1 e_2^{\top} + e_2 e_1^{\top}$, with equal eigenvalue $\lambda_2 = \lambda_3$.
-      The restriction $\Sym(\Vrho, \mathbb{C}) \subsetneq \End(\Vrho)$ reflects a measurement
-      constraint induced by the Born\textendash{}Infeld parity, not a reduction of the
-      underlying degrees of freedom in $\Vrho$: the sector $V_\rho$ retains its full
-      $d_\rho = 2$ complex dimensions; only the observable built from conjugate-pair data
-      is confined to the symmetric subspace.
-      The eigenvalue ratio $\lambda_1 : \lambda_2 = 1 : \tfrac{1}{2}$ from O28 reflects
-      the relative variance of the diagonal versus off-diagonal components along the
-      BFS trajectory; it is not a universal algebraic constant but a property of the
-      specific group dynamics.
-    \end{remark}
-
-  \section{Reformulation of O26 Criterion 5.4}
+  \section{Reformulation of O26 Criterion 5.4 as a Carrier Test}
     \label{sec:reformulation}
 
-    The O26 Criterion~5.4~\cite{Beau2026a30} predicts $\reff = d_{\rho}^2$ in $\End(\Vrho)$,
-    targeting $d_{\rho}^2 = 4$ for the spin-$\tfrac{1}{2}$ candidate.
-    Theorem~\ref{thm:sym} shows that this target is structurally inaccessible from
-    conjugate-pair data.
+    The O26 Criterion~5.4~\cite{Beau2026a30} predicts $\reff = d_{\rho}^2$ in $\End(\Vrho)$, targeting
+    $d_{\rho}^2 = 4$ for the spin-$\tfrac{1}{2}$ candidate.
+    Two independent facts reshape this criterion.
 
     \begin{definition}[Accessible rank]
       \label{def:accessible}
-      For conjugate-pair data satisfying the anti-linear constraint~\eqref{eq:parity},
-      the \emph{accessible rank} in $\End(\Vrho)$ is $\reff^{\mathrm{sym}} = d_{\rho}(d_{\rho}+1)/2$,
-      the dimension of $\Sym(\Vrho, \mathbb{C})$.
-      The \emph{full rank} $d_{\rho}^2 = \dim_{\mathbb{C}} \End(\Vrho)$ would require
-      outer products $w \otimes u^{*}$ with $u$ and $w$ independently sampled from
-      $\Vrho$, i.e., data from the two blocks $c$ and $q{-}c$ that are not constrained
-      by~\eqref{eq:parity}.
+      For conjugate-pair data satisfying the anti-linear constraint~\eqref{eq:parity}, the outer products are symmetric
+      (Theorem~\ref{thm:sym}); the antisymmetric part of $\End(\Vrho)$ is never sampled.
+      The \emph{full rank} $d_{\rho}^2$ would require outer products $w \otimes u^{*}$ with $u$ and $w$ independently
+      sampled, i.e.\ data from the two blocks $c$ and $q{-}c$ that are not constrained by~\eqref{eq:parity}.
     \end{definition}
 
-    \begin{criterion}[Reformulated O26 Criterion~5.4 for conjugate-pair data]
+    \begin{criterion}[Reformulated O26 Criterion~5.4: carrier test]
       \label{crit:reformulated}
-      For the admissible covariance built from conjugate-pair outer products~\eqref{eq:outer},
-      the falsifiability table is:
-      \begin{center}
-        \begin{tabular}{ccc}
-          \hline
-          $\reff$                      & $d_{\rho}$ via~\eqref{eq:inversion} & Sector candidate
-          \\
-          \hline
-          $1$                          & $1$                                 & trivial ($\Vrho = \mathbb{C}^1$)
-          \\
-          $3$                          & $2$                                 & spin-$\tfrac{1}{2}$ (
-          $\Vrho = \mathbb{C}^2$) \\
-          $6$                          & $3$                                 & spin-$1$ ($\Vrho = \mathbb{C}^3 = \Heff$)
-          \\
-          $\notin \{1,3,6,10,\ldots\}$ & ---                                 & non-integer $d_{\rho}$; Level~II fails
-          \\
-          varies across pairs          & ---                                 & canonical identification fails
-          \\
-          \hline
-        \end{tabular}
-      \end{center}
-      The observed value $\reff = 3$ (invariant across all pairs and all primes, as
-      established by O28) falls in the second row, identifying $d_{\rho} = 2$ uniquely.
+      Test~4, built from conjugate-pair outer products~\eqref{eq:outer}, measures a property of the \emph{carrier}
+      $\Heff$, not of the target $\Vrho$.
+      The operative readings are:
+      \begin{itemize}
+        \item $\reff = 3$ in $\End(\Heff)$, invariant across pairs and primes, with the trajectory spanning all of
+        $\Heff$ and the constraint forms spanning $\mathfrak{so}(3)$: the carrier is the irreducible adjoint
+        (spin-$1$) representation $\Heff \simeq \su(2)$ (Corollary~\ref{cor:adjoint}).
+        \item The original target $d_{\rho}^2 = 4$ is structurally inaccessible from conjugate-pair data
+        (Definition~\ref{def:accessible}); it is recovered only by breaking the per-vector conjugate locking
+        (Section~\ref{sec:results}).
+      \end{itemize}
+      The identification of the spin-$\tfrac{1}{2}$ \emph{target} $\Vrho$ is not decided by Test~4: $\Vrho$ is the
+      Schur target of $\bar\Phi : \su(2) \to \Vrho$ (O27), not a subspace of $\Heff$.
     \end{criterion}
 
     \begin{remark}[Relation to O26 Level~III]
       \label{rem:level3}
-      The O26 hierarchy~\cite{Beau2026a30} defines Level~III as the identification
-      of the correct irreducible sector.
-      Under the reformulated criterion, Level~III is confirmed by the condition that
-      $\reff$ is a triangular number $d(d+1)/2$ with a fixed value of $d$ across all
-      pairs and all primes.
-      The observed $\reff = 3$ (triangular number with $d = 2$), invariant with zero
-      inter-pair variance at $q \in \{29, 101\}$ and negligible variance at $q \in \{61, 151\}$
-      (O28), satisfies Level~III for the reformulated criterion.
-      The anti-Hermitian complement of $\Sym(\Vrho, \mathbb{C})$ in $\End(\Vrho)$
-      (corresponding to the remaining $d_{\rho}^2 - d_{\rho}(d_{\rho}+1)/2 = 1$ dimension
-      for $d_{\rho} = 2$) is structurally inaccessible from the present data and would
-      require a separate measurement protocol using independently sampled blocks.
+      The O26 hierarchy~\cite{Beau2026a30} defines Level~III as the identification of the correct irreducible sector.
+      Test~4 confirms an irreducible carrier --- the spin-$1$ adjoint on $\Heff$ --- with $\reff = 3$ invariant
+      (zero inter-pair variance at $q \in \{29, 61\}$, cf.\ O28).
+      It does not confirm the spin-$\tfrac{1}{2}$ \emph{target}; the choice $d_\rho = 2$ rests on the minimality
+      argument of O26, not on $\reff$, and a direct test of $\Vrho$ requires the independent observable of
+      Definition~\ref{def:accessible}.
     \end{remark}
 
   \section{Numerical Protocol and Results}
@@ -396,28 +349,28 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
 
     \subsection{Protocol}
 
-      The computation uses the Q5a-O5 checkpoints (one \texttt{.npz} file per prime $q$),
-      which store \texttt{pi\_c} and \texttt{pi\_qmc}, the per-shell H\_eff projections of
-      BFS fingerprint vectors for sample $m = 0$ of each Monte Carlo run.
-      Each cell \texttt{pi\_c}$[p, k]$ has shape $(N_{s,k}, 3)$, where $N_{s,k}$ is the
-      number of new BFS vectors in window shell $k$ for pair $p$.
+      All computations use the Q5a-O5 checkpoints (one \texttt{.npz} file per prime $q$), which store \texttt{pi\_c}
+      and \texttt{pi\_qmc}, the per-shell $\Heff$ projections of BFS fingerprint vectors for sample $m = 0$.
       No additional BFS computation is required.
+      Three scripts implement the analysis: \texttt{o29\_rank\_computation.py} (the $\reff$ measurement reproducing
+      O28), \texttt{o29\_derisk\_diagnostic.py} (full spectra in $\End(\Heff)$ and $\End(\Vrho)$, parity defect, and
+      the locking-broken control), and \texttt{variety\_summary.py} (the Veronese collapse, the constraint forms, and
+      the Schur commutant).
 
-      \textbf{Step A (in $\End(\Heff)$):}
-      For each conjugate pair $(c, q{-}c)$, concatenate all per-shell vectors into a single
-      trajectory matrix $W_c = \bigl[\texttt{pi\_c}[p,n_0]\,;\,\ldots\,;\,\texttt{pi\_c}[p,n_1]\bigr]
-  \in \mathbb{C}^{N \times 3}$, where $N = \sum_k N_{s,k}$.
-      Form the per-vector outer products and compute $\Cc^{(A)}$ in $\End(\mathbb{C}^3)$.
-      The effective rank $\reff^{(A)}$ and the symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$
-      (averaged over $j$) are recorded for each pair.
+      \textbf{Step A ($\End(\Heff)$).}
+      For each conjugate pair, concatenate the per-shell vectors into $W_c \in \mathbb{C}^{N \times 3}$, form the
+      symmetric outer products, and compute $\reff$ and the eigenvalue spectrum of $\Cc$ in $\End(\mathbb{C}^3)$.
 
-      \textbf{Step B (in $\End(\Vrho)$):}
-      Identify $\Vrho$ via the SVD of $W_c^{\top}$, project both trajectories onto the leading
-      two right singular vectors, and compute $\Cc^{(B)}$ in $\End(\mathbb{C}^2)$.
-      Record $\reff^{(B)}$.
+      \textbf{Step B ($\End(\Vrho)$).}
+      Project onto the leading two singular directions of $W_c$ and recompute $\reff$ in $\End(\mathbb{C}^2)$.
 
-      \textbf{Step C (inversion):}
-      Apply~\eqref{eq:inversion} to $\reff^{(A)}$ to recover $d_{\rho}$.
+      \textbf{Step C (carrier).}
+      Compute the Veronese monomial spectrum, the three constraint forms $B_k$, their commutators, and the Schur
+      commutant, establishing irreducibility (Section~\ref{sec:vrho}).
+
+      \textbf{Step D (control).}
+      Recompute $\reff$ in $\End(\Vrho)$ after a random permutation of the $q{-}c$ index, breaking the per-vector
+      conjugate locking while preserving the marginal distribution.
 
     \subsection{Results}
 
@@ -425,201 +378,173 @@ Effective Dimension of the Admissible Covariance in $\End(\Vrho)$}
         \centering
         \begin{tabular}{ccccc}
           \hline
-          Prime $q$ & Pairs   & $\reff^{(A)} = 3$ & $d_{\rho}$  & Median $|M-M^{\top}|/|M|$ \\
+          Prime $q$ & Pairs   & $\reff^{(A)} = 3$ & $\reff^{(B)}$ & Median $|M-M^{\top}|/|M|$ \\
           \hline
-          $61$      & $30/30$ & $100\%$           & $2$         & $7.0 \times 10^{-2}$      \\
-          $101$     & $32/50$ & $64\%$            & $2$ (modal) & $6.2 \times 10^{-2}$      \\
-          $151$     & $75/75$   & $100\%$         & $2$         & $2.8 \times 10^{-2}$      \\
-          $211$     & $103/105$ & $98\%$          & $2$         & $1.88 \times 10^{-2}$     \\
+          $29$      & $5/5$   & $100\%$           & $2$           & $9.7 \times 10^{-3}$      \\
+          $61$      & $30/30$ & $100\%$           & $2$           & $3.1 \times 10^{-3}$      \\
+          $101$     & $32/50$ & $64\%$ (modal)    & $2$           & $6.2 \times 10^{-2}$      \\
+          $151$     & $75/75$ & $100\%$           & $2$           & $2.8 \times 10^{-2}$      \\
+          $211$     & $103/105$ & $98\%$          & $2$/$3$       & $1.9 \times 10^{-2}$      \\
           \hline
         \end{tabular}
-        \caption{Fraction of conjugate pairs with $\reff^{(A)} = 3$ in $\End(\Heff)$,
-          the inferred $d_{\rho}$ via~\eqref{eq:inversion}, and the median symmetry ratio
-          $|M_j - M_j^{\top}|_F / |M_j|_F$ (Step~A).
-          At $q = 61$ and $q = 151$, $\reff^{(A)} = 3$ holds universally with zero inter-pair
-          variance, uniquely identifying $d_{\rho} = 2$.}
+        \caption{Effective rank in $\End(\Heff)$ ($\reff^{(A)}$) and in $\End(\Vrho)$ ($\reff^{(B)}$), and the
+          median symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$.
+          The carrier rank $\reff^{(A)} = 3$ is invariant; in $\End(\Vrho)$ the rank is $\reff^{(B)} = 2$
+          (Remark~\ref{rem:restriction}).
+          The symmetry ratio is small and decreases with $q$, consistent with the anti-linear parity becoming exact
+          in the large-$q$ limit (medians from \texttt{o29\_derisk\_diagnostic.py}; an alternative per-vector mean
+          statistic gives larger absolute values with the same monotone trend).}
         \label{tab:results}
       \end{table}
+
+      \paragraph{Carrier structure (Step C).}
+      The Veronese monomial spectrum is $[1 : {\sim}0.9 : {\sim}0.9 : 0 : 0 : 0]$ (three machine zeros) at
+      $q \in \{29, 61\}$: a hard $6 \to 3$ collapse (Theorem~\ref{thm:veronese}).
+      The three constraint forms are traceless rank-$2$; their commutators span $\mathfrak{so}(3)$ exactly
+      (fraction $1.000$, rank $3$); the Schur commutant is one-dimensional, so the action on $\Heff$ is irreducible
+      (Proposition~\ref{prop:so3}).
+      The trajectory spans all three dimensions ($\sigma_3/\sigma_1 \simeq 0.7\text{--}1.0$), and the Hermitian
+      covariance $\langle w\, w^{\dagger}\rangle$ has the axial spectrum $[1 : 0.6 : 0.6] \to [1 : 0.8 : 0.8]$
+      ($q = 29 \to 61$).
+      Figure~\ref{fig:variety} summarises the collapse and the $\mathfrak{so}(3)$ structure.
+
+      \paragraph{Locking-broken control (Step D).}
+      In $\End(\Vrho)$, the real conjugate data give $\reff = 2$ and the exact-parity surrogate
+      $M_j = w_j \otimes w_j$ also gives $\reff = 2$, while breaking the per-vector locking by permuting the $q{-}c$
+      index restores $\reff = 4 = d_\rho^2$ for every pair at $q \in \{29, 61\}$.
+      This is the operational proof that $d_\rho^2 = 4$ is inaccessible from conjugate-pair data
+      (Definition~\ref{def:accessible}), and it isolates an independent observable that does reach the full rank ---
+      the natural starting point for a genuine future test of the spin-$\tfrac{1}{2}$ target $\Vrho$.
 
       \begin{figure}[t]
         \centering
         \includegraphics[width=\linewidth]{o29_rank_plot}
         \caption{%
-          \textbf{(a)} Effective rank $\reff^{(A)}$ in $\End(\Heff) = \End(\mathbb{C}^3)$
-          per conjugate pair $(c, q{-}c)$, for $q \in \{61, 101, 151, 211\}$
-          (reproduced from the \texttt{o29\_rank\_computation.py} pipeline).
-          The dashed green line marks $\reff = 3$, the symmetric rank formula prediction
-          for $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$).
-          At $q = 61$ ($30/30$ pairs) and $q = 151$ ($75/75$ pairs), $\reff = 3$ holds
-          universally with zero inter-pair variance.
-          At $q = 101$, $\reff = 3$ is the modal result ($64\%$ of pairs); anomalous pairs
-          are confirmed as single-sample Monte Carlo artefacts by a multi-sample analysis
-          (Remark~\ref{rem:q101}).
-          At $q = 211$ ($103/105$ pairs), $\reff = 3$ holds for $98\%$ of pairs,
-          with $2$ anomalous pairs giving $\reff = 5$, consistent with the same
-          single-sample artefact pattern.
-          \textbf{(b)} Median normalised eigenvalue spectrum $\lambda_i/\lambda_1$
-          in $\End(\Heff)$, computed over all $\reff^{(A)} = 3$ pairs at each prime.
-          The two subleading eigenvalues satisfy $\lambda_2/\lambda_1 \approx \lambda_3/\lambda_1
-          \approx \tfrac{1}{2}$, confirming the invariant structure
-          $[\lambda_1 : \lambda_2 : \lambda_3] = [1 : \tfrac{1}{2} : \tfrac{1}{2}]$
-          of O28~\cite{Beau2026a32}.
-          Eigenvalues $\lambda_4, \ldots, \lambda_9$ lie below the $1\%$ threshold
-          (dotted red line) by more than two orders of magnitude.}
+          Effective rank $\reff^{(A)}$ in $\End(\Heff) = \End(\mathbb{C}^3)$ per conjugate pair, for
+          $q \in \{61, 101, 151, 211\}$ (from \texttt{o29\_rank\_computation.py}).
+          The carrier rank $\reff = 3$ holds universally at $q = 61$ ($30/30$) and $q = 151$ ($75/75$) with zero
+          inter-pair variance, at $98\%$ for $q = 211$, and as the modal value ($64\%$) at $q = 101$ where the
+          dispersion is a single-sample Monte Carlo artefact (Remark~\ref{rem:q101}).
+          Panel (b) shows the median normalised spectrum $[\lambda_1 : \lambda_2 : \lambda_3] =
+          [1 : \tfrac{1}{2} : \tfrac{1}{2}]$ of O28~\cite{Beau2026a32}.}
         \label{fig:reff}
       \end{figure}
 
-      The result $\reff^{(A)} = 3$, shown in Figure~\ref{fig:reff}(a), is the
-      central numerical finding of O29.
-      Via the symmetric rank formula~\eqref{eq:sym-rank} and its inversion~\eqref{eq:inversion},
-      this identifies $d_{\rho} = 2$ (spin-$\tfrac{1}{2}$) with zero inter-pair variance at
-      both primes.
-      The eigenvalue ratio $\lambda_2/\lambda_1 \approx \tfrac{1}{2}$ is confirmed in
-      $\End(\Heff)$ (consistent with O28~\cite{Beau2026a32}), corresponding to the
-      $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$ structure.
-
-      The symmetry ratio $|M_j - M_j^{\top}|_F / |M_j|_F$ is small but non-zero (median
-      $1.88 \times 10^{-2}$ to $7.0 \times 10^{-2}$ across all primes), consistent with
-      the pair constraint acting as $\pi_{q-c}(v) = \lambda \overline{\pi_c(v)}$ for a
-      slowly varying phase $\lambda$ rather than a pure scalar.
-      This small deviation from exact symmetry does not alter the rank: $\reff^{(A)} = 3$
-      is robust across all pairs at $q \in \{61, 151, 211\}$.
+      \begin{figure}[t]
+        \centering
+        \includegraphics[width=\linewidth]{variety_summary}
+        \caption{%
+          \textbf{(a)} The Veronese (squaring) image of the $\Heff$ trajectory: monomial singular values collapse
+          hard from $6$ to $3$ (three machine zeros) at $q \in \{29, 61\}$.
+          \textbf{(b)} The three constraint forms: commutators are antisymmetric to machine precision
+          ($\mathfrak{so}(3)$-valued), establishing the adjoint structure; the residual non-closure of the structure
+          constants is a basis-dependent normalisation, not a failure of $\mathfrak{so}(3)$ membership
+          (the span is exactly $\mathfrak{so}(3)$, Proposition~\ref{prop:so3}).}
+        \label{fig:variety}
+      \end{figure}
 
       \begin{remark}[Anomaly at $q = 101$: multi-sample resolution]
         \label{rem:q101}
-        At $q = 101$, the single-sample run ($m = 0$) of \texttt{o29\_rank\_computation.py}
-        yields $\reff^{(A)} = 3$ for $64\%$ of pairs ($32/50$), with the remaining $18$ pairs
-        giving $\reff^{(A)} \in \{4, 5, 6, 7, 8, 9\}$.
-        To determine whether this dispersion reflects a structural property of
-        $\Heis_3(\mathbb{Z}/101\mathbb{Z})$ or a Monte Carlo sampling artefact,
-        a dedicated multi-sample analysis was carried out using \texttt{o29\_multisample.py},
-        replaying $M = 5$ independent samples for each of the $18$ anomalous pairs
-        (using per-pair deterministic seeds).
-
-        All $18$ anomalous pairs have modal $\reff = 3$;
-        $76.7\%$ of the $18 \times 5 = 90$ (pair, sample) cells satisfy $\reff = 3$
-        (an earlier partial run on $11$ pairs gave $89\%$, now superseded).
-        Some pairs show persistent variance: pair $(50,51)$ has mean $\reff = 4.6$
-        and pair $(26,75)$ has mean $\reff = 3.8$, reflecting genuine seed-sensitivity
-        at $q=101$ rather than a pure isolated artefact.
-        The distribution of non-modal values is consistent with high-$\reff$ outliers
-        arising from atypical BFS blocks: for example, pair $(8, 93)$ gives
-        $\{3, 3, 3, 3, 8\}$, where the single reff$= 8$ sample corresponds to a
-        block that explores a non-generic direction in $\Heff$.
-
-        The $q = 101$ anomaly is therefore a single-sample Monte Carlo artefact,
-        not a structural feature of the group.
-        Across all three primes and all pairs, the identification $d_{\rho} = 2$
-        (spin-$\tfrac{1}{2}$) is confirmed without exception at the modal level.
+        At $q = 101$, the single-sample run yields $\reff^{(A)} = 3$ for $64\%$ of pairs ($32/50$), with the
+        remaining $18$ pairs giving $\reff^{(A)} \in \{4, \ldots, 9\}$.
+        A multi-sample analysis (\texttt{o29\_multisample.py}, $M = 5$ per anomalous pair) gives modal $\reff = 3$ for
+        all $18$ pairs, with $76.7\%$ of (pair, sample) cells at $\reff = 3$; some pairs show genuine
+        seed-sensitivity (e.g.\ pair $(50,51)$, mean $\reff = 4.6$).
+        The dispersion is a single-sample Monte Carlo artefact, not a structural feature of the group.
       \end{remark}
 
       \begin{remark}[Anomaly at $q = 211$: two non-generic pairs]
         \label{rem:q211}
-        At $q = 211$ ($105$ pairs, window $[3, 13]$), the single-sample run yields
-        $\reff^{(A)} = 3$ for $103/105$ pairs ($98\%$).
-        The two anomalous pairs --- $(38, 173)$ with $\reff^{(A)} = 5$, $\reff^{(B)} = 2$,
-        and $(45, 166)$ with $\reff^{(A)} = 5$, $\reff^{(B)} = 3$ --- exhibit elevated
-        rank only in $\End(\Heff)$, not in $\End(\Vrho)$.
-        The deviation is smaller (reff$= 5$ vs.~reff $\leq 9$ at $q = 101$), consistent
-        with mild BFS atypicality rather than a structural property of the group.
-        A dedicated multi-sample confirmation analogous to Remark~\ref{rem:q101}
-        is identified as a direction for future work.
+        At $q = 211$ ($105$ pairs, window $[3, 13]$), $\reff^{(A)} = 3$ holds for $103/105$ pairs ($98\%$).
+        The two anomalous pairs --- $(38, 173)$ and $(45, 166)$, both $\reff^{(A)} = 5$ --- show elevated rank only in
+        $\End(\Heff)$, consistent with mild BFS atypicality; a dedicated multi-sample confirmation is left to future
+        work.
       \end{remark}
 
   \section{Discussion}
 
     \subsection{What O29 establishes}
 
-      Three results are established, the first two proved and the third numerically confirmed.
+      Three results stand, with epistemic labels.
 
-      \textbf{First}, the Born\textendash{}Infeld parity constraint~\eqref{eq:parity} forces
-      $M_j = w_j w_j^{\top} \in \Sym(\Heff, \mathbb{C})$ for all $j$ (Theorem~\ref{thm:sym}).
-      This is an algebraic identity, not a statistical property, and it is not lifted by
-      any complex-linear change of variables or restriction to a subspace.
+      \textbf{First (structural, proved on the data).}
+      $\reff = 3$ is a hard $6 \to 3$ collapse of the Veronese squaring image of the $\Heff$ trajectory
+      (Theorem~\ref{thm:veronese}); the three constraint forms span $\mathfrak{so}(3)$ and the action on
+      $\Heff = \mathbb{C}^3$ is irreducible (Proposition~\ref{prop:so3}).
+      Combined with the proved categorical statement of O27, this identifies $\reff = 3$ as the invariant of the
+      adjoint (spin-$1$) carrier $\Heff \simeq \su(2)$ (Corollary~\ref{cor:adjoint}).
 
-      \textbf{Second}, the symmetric rank formula $\reff = d_{\rho}(d_{\rho}+1)/2$
-      (Theorem~\ref{thm:rank}) and its inversion~\eqref{eq:inversion} identify $d_{\rho}$
-      uniquely from the observed rank.
-      For $\reff = 3$, the unique solution is $d_{\rho} = 2$, confirming the spin-$\tfrac{1}{2}$
-      sector without recourse to the full rank $d_{\rho}^2 = 4$.
+      \textbf{Second (proved).}
+      The Born\textendash{}Infeld parity is anti-linear (Theorem~\ref{thm:sym}, Remark~\ref{rem:antilinear}); the
+      target $d_\rho^2 = 4$ is inaccessible from conjugate-pair data, and is restored by the locking-broken control
+      (Section~\ref{sec:results}).
 
-      \textbf{Third}, the numerical computation confirms $\reff^{(A)} = 3$ universally across
-      all pairs at $q \in \{61, 151, 211\}$ ($100\%$, $100\%$, $98\%$ respectively),
-      and for $64\%$ of pairs at $q = 101$ (modal result).
-      At $q \in \{61, 151\}$, the identification $d_{\rho} = 2$ is unconditional;
-      at $q = 211$, it is unconditional for $103/105$ pairs.
+      \textbf{Third (conditional).}
+      The spin-$\tfrac{1}{2}$ \emph{target} $\Vrho$ is the Schur target of $\bar\Phi : \su(2) \to \Vrho$ (O27) and is
+      not a subspace of $\Heff$; Test~4 does not identify it.
+      Its selection rests on the O26 minimality argument, pending an independent observable.
+
+      \paragraph{Corrected status of Test~4.}
+      Test~4 does not identify the spin-$\tfrac{1}{2}$ carrier directly.
+      It identifies the adjoint $\Heff \simeq \su(2)$ carrier, through a hard $6 \to 3$ collapse of the Veronese
+      squaring image.
+      The observed value $\reff = 3$ is therefore the spin-$1$/adjoint invariant already selected by the effective
+      $\mathrm{SU}(2)$ automorphism structure, not the symmetric-rank inversion $3 = d_\rho(d_\rho+1)/2$ for
+      $d_\rho = 2$.
+      The spin-$\tfrac{1}{2}$ sector remains the Schur target $V_\rho$, and requires an independent observable.
 
     \subsection{Revision of the O26 criterion}
 
-      The O26 Criterion~5.4~\cite{Beau2026a30} was formulated with the implicit assumption
-      that the vectors $\Phi_{q,\rho}(v_c^{(n)})$ and $\Phi_{q,\rho}(v_{q-c}^{(n)})$
-      entering the outer product $M_n^f$ are independently distributed in $\Vrho$.
-      For conjugate-pair data satisfying~\eqref{eq:parity}, this independence fails:
-      the two blocks are anti-linearly related, not independently sampled.
-      The reformulated criterion (Criterion~\ref{crit:reformulated}) replaces
-      $d_{\rho}^2 \to d_{\rho}(d_{\rho}+1)/2$ and is the correct falsifiability target
-      for the present measurement setting.
-      The spin-$\tfrac{1}{2}$ candidate remains consistent with all available data.
+      The O26 Criterion~5.4~\cite{Beau2026a30} was formulated with the implicit assumption that
+      $\Phi_{q,\rho}(v_c^{(n)})$ and $\Phi_{q,\rho}(v_{q-c}^{(n)})$ are independently distributed in $\Vrho$.
+      For conjugate-pair data this independence fails: the blocks are anti-linearly related.
+      Criterion~\ref{crit:reformulated} replaces the target-space prediction by a carrier test on $\Heff$, and records
+      that the original $d_\rho^2 = 4$ is reachable only with independently sampled blocks (Step~D).
 
-    \subsection{Completion of the identification chain}
+    \subsection{Position in the identification chain}
 
-      The symmetric rank formula closes the identification component of the O-series.
-      Combined with the structural chain~\eqref{eq:chain} established by O27~\cite{Beau2026a31},
-      the programme now possesses the following closed sequence:
+      Relative to the chain~\eqref{eq:chain}, O29 makes precise where the data live:
       \begin{equation}
-        \text{emergence} \Rightarrow \mathfrak{su}(2)~\text{[O27]}
-        \Rightarrow \text{pair data} \in \Sym(\Vrho, \mathbb{C})~\text{[O29, proved]}
-        \Rightarrow \reff = 3 \Rightarrow d_{\rho} = 2~\text{[O29, confirmed]}.
+        \text{emergence} \Rightarrow \su(2)~\text{[O27]}
+        \Rightarrow \Heff \simeq \su(2)~\text{(adjoint spin-$1$)}
+        \Rightarrow \reff = 3.
       \end{equation}
-      Each implication is either a proved theorem or a numerically confirmed structural result.
+      The spin-$\tfrac{1}{2}$ target $\Vrho$ sits one arrow further, through $\bar\Phi : \su(2) \to \Vrho$, and is not
+      reached by the conjugate-pair covariance.
 
     \subsection{What remains open}
 
-      The following directions are open after O29:
       \begin{itemize}
-        \item Analytical derivation of the eigenvalue ratio $\lambda_1 : \lambda_2$
-        from the group structure of $\Heis_3(\mathbb{Z}/q\mathbb{Z})$ and its dependence on $q$.
-        \item Extension of the numerical computation to $q \in \{307, 401\}$
-        to confirm $\reff = 3$ across the full planned range
-        ($q = 211$ is confirmed at $98\%$, cf.~Remark~\ref{rem:q211}).
-        \item Design of a measurement protocol from non-conjugate block data (e.g.,
-        using the $c$ block at two independent primes) that would probe the full
-        $d_{\rho}^2 = 4$ rank and provide a direct test of O26 Criterion~5.4 in
-        its original formulation.
-        \item Analytical proof that the trajectory dimension
-        $\dim_{\mathbb{C}} \Span_{\mathbb{C}}\{w_j\} = 2$ holds for all odd primes $q$,
-        complementing the numerical evidence from $q \in \{29, 61, 101, 151, 211\}$.
+        \item An analytic proof that the Veronese image collapses $6 \to 3$ for all odd primes $q$ (numerically
+        verified at $q \in \{29, 61\}$), and that the constraint forms span $\mathfrak{so}(3)$.
+        \item A canonical, independent observable on $\Vrho$ --- built from non-conjugate block data, as in the
+        locking-broken control --- that would directly test the spin-$\tfrac{1}{2}$ target and reach $d_\rho^2 = 4$.
+        \item An analytic derivation of the axial ratio $\lambda_1 : \lambda_2$ and its dependence on $q$.
+        \item Extension of the carrier diagnostics (Veronese collapse, $\mathfrak{so}(3)$ span, Schur commutant) to
+        $q \in \{101, 151, 211, 307\}$.
       \end{itemize}
 
   \section{Conclusion}
 
-    O29 provides the complete structural explanation of the O28 result
-    $\reff = 3$ in $\End(\Heff)$ and carries the sector identification to completion.
-    The Born\textendash{}Infeld parity constraint forces the outer products
-    $M_j = \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}$ into the complex symmetric subspace
-    $\Sym(\Vrho, \mathbb{C})$, an algebraic identity that holds independently of any
-    morphism choice or subspace restriction.
-    The resulting covariance rank satisfies the symmetric rank formula
-    $\reff = d_{\rho}(d_{\rho}+1)/2$, whose unique positive integer inversion at
-    $\reff = 3$ gives $d_{\rho} = 2$, confirming the spin-$\tfrac{1}{2}$ sector.
-    Numerically, $\reff^{(A)} = 3$ holds universally across all conjugate pairs at
-    $q = 61$ ($30/30$) and $q = 151$ ($75/75$), with zero inter-pair variance at both
-    primes.
-    At $q = 211$ ($103/105$, $98\%$), $\reff^{(A)} = 3$ holds for all but two pairs,
-    whose anomaly is consistent with a single-sample Monte Carlo artefact
-    (Remark~\ref{rem:q211}).
-    At $q = 101$, $\reff^{(A)} = 3$ is the modal result ($64\%$ of pairs); a
-    dedicated multi-sample analysis confirms that all $18$ anomalous pairs have modal
-    $\reff = 3$, with $76.7\%$ of (pair, sample) cells satisfying $\reff = 3$
-    (Remark~\ref{rem:q101}).
-    The $q = 101$ anomaly is a single-sample Monte Carlo artefact, not a structural
-    feature of the group.
+    O29 explains the O28 result $\reff = 3$ in $\End(\Heff)$ and identifies what Test~4 measures.
+    The value $3$ is real and stable, but it is the invariant of the irreducible \emph{adjoint} (spin-$1$)
+    representation $\Heff \simeq \su(2)$: $\reff = 3$ arises from a hard $6 \to 3$ collapse of the Veronese squaring
+    image of the trajectory, whose three constraint forms span $\mathfrak{so}(3)$ and whose action on
+    $\Heff = \mathbb{C}^3$ has a one-dimensional Schur commutant (irreducible).
+    The trajectory spans all three dimensions of $\Heff$ and the rank in $\End(\Vrho)$ is $2$, so $\reff = 3$ is the
+    carrier invariant of $\Heff$, not a symmetric rank $d_\rho(d_\rho+1)/2$ of a two-dimensional $\Vrho$.
+    The Born\textendash{}Infeld parity is anti-linear, and the target $d_\rho^2 = 4$ is inaccessible from
+    conjugate-pair data --- restored only by breaking the per-vector locking.
+    The spin-$\tfrac{1}{2}$ sector is therefore the Schur target $\Vrho$ of $\bar\Phi : \su(2) \to \Vrho$, not a
+    subspace of $\Heff$, and its identification requires an independent observable, for which the locking-broken
+    protocol provides the natural starting point.
+    This keeps O29 consistent with O23's explicit warning against conflating the distinct occurrences of the number
+    $3$~\cite{Beau2026a27}.
 
     \clearpage
   \section*{Acknowledgements.}
-    The author acknowledges the use of large language models as a supportive tool for
-    refining language, structure, and internal consistency during the development of
-    this manuscript.
+    The author acknowledges the use of large language models as a supportive tool for refining language, structure,
+    and internal consistency during the development of this manuscript.
 
     \bibliographystyle{plain}
     \bibliography{cosmochrony-bibliography}
