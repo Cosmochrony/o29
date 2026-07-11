@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Position of the Problem}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}What O25\textendash {}O28 established}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Scope and outcome of O29}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Setup and Notation}{3}{section.2}%
+\contentsline {section}{\numberline {3}Structural Analysis: the Symmetric Rank Formula}{4}{section.3}%
+\contentsline {section}{\numberline {4}Identification of $V_{\rho }$ and the Eigenvalue Structure}{5}{section.4}%
+\contentsline {section}{\numberline {5}Reformulation of O26 Criterion~5.4}{5}{section.5}%
+\contentsline {section}{\numberline {6}Numerical Protocol and Results}{6}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Protocol}{6}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Results}{7}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Discussion}{8}{section.7}%
+\contentsline {subsection}{\numberline {7.1}What O29 establishes}{8}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Revision of the O26 criterion}{8}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Completion of the identification chain}{9}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}What remains open}{9}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}%
