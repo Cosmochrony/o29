@@ -1,6 +1,6 @@
 This repository contains the source of the **O29 Cosmochrony paper**  
-[*Spin-1/2 Sector Identification via the Symmetric Rank Formula:
-Effective Dimension of the Admissible Covariance in End(Vρ)*](out/SpectralO29.pdf).
+*Spin-1/2 Sector Identification via the Symmetric Rank Formula:
+Effective Dimension of the Admissible Covariance in End(Vρ)*.
 
 This work extends the **spectral admissibility sub-programme** by resolving
 the representation-theoretic identification problem left open in **O26–O28**.
