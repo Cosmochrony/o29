@@ -49,8 +49,9 @@ Effective Dimension of the Admissible Covariance in $\End(\Heff)$}
     Paper O28~\cite{Beau2026a32} established that the per-pair covariance $\Cc$ in $\End(\Heff)$ has rank $\reff = 3$
     with invariant eigenvalue structure $[1 : \tfrac{1}{2} : \tfrac{1}{2}]$.
     The present paper gives the structural explanation of this result.
-    The value $\reff = 3$ is real and stable across primes; the Born\textendash{}Infeld parity involution
-    $c \leftrightarrow q{-}c$ of O18~\cite{Beau2026a22} acts anti-linearly, so the conjugate-pair outer products
+    The value $\reff = 3$ is real and stable across primes; the conjugation identity
+    $\rho_{q-c} = \bar{\rho}_c$ (an O17 theorem, recalled in O18 Theorem~3.1~\cite{Beau2026a22})
+    acts anti-linearly, so the conjugate-pair outer products
     $M_j = \pi_c(v_j) \otimes \pi_{q-c}(v_j)^{*}$ are (up to a small, $q$-decreasing defect) complex symmetric; and the
     O26 target $\reff = d_\rho^2 = 4$ is structurally inaccessible from conjugate-pair data.
     A direct characterisation on the O25/Q5a checkpoints shows that the trajectory
@@ -140,12 +141,14 @@ Effective Dimension of the Admissible Covariance in $\End(\Heff)$}
     be the admissible projection of the character-$c$ Weil block.
     Write $w_j := \pi_c(v_j) \in \Heff$ for the admissible projections along the fitting window $[n_0, n_1]$
     (auto-calibrated by O12~\cite{Beau2026a16}).
-    The Born\textendash{}Infeld parity result of O18~\cite{Beau2026a22}, $\rho_{q-c} = \bar{\rho}_c$, implies
+    The conjugation identity $\rho_{q-c} = \bar{\rho}_c$ (an O17 theorem, recalled in O18
+    Theorem~3.1~\cite{Beau2026a22}) implies
     \begin{equation}
       \pi_{q-c}(v_j) = \overline{w_j}
       \label{eq:parity}
     \end{equation}
-    in the canonical basis of $\Heff$ fixed by O23~\cite{Beau2026a27}, up to a small phase defect quantified in
+    in the canonical basis of $\Heff$ fixed by the supplied carrier of O23~\cite{Beau2026a27},
+    up to a small phase defect quantified in
     Section~\ref{sec:results}.
     The per-pair outer product and covariance are
     \begin{equation}
@@ -245,6 +248,17 @@ Effective Dimension of the Admissible Covariance in $\End(\Heff)$}
       Hence $\dim_{\mathbb{C}}\Span\{w_j\} = 3 = \dim_{\mathbb{C}}\Heff$.
     \end{proposition}
 
+    \begin{remark}[Truncation caveat]
+      \label{rem:truncation}
+      The vectors $w_j = \pi_c(v_j)$ are the three-coordinate projections produced with
+      $\mathrm{HEFF\_DIM} = 3$: $\pi_c$ is a truncation, and the rank of the ambient
+      pre-saturation pipeline cannot be measured from these coordinates
+      (Q5a-O2, Proposition~4.1).
+      Proposition~\ref{prop:dim} is therefore a statement internal to the truncated space
+      $\Heff = \mathbb{C}^3$: it shows that the trajectory fills the truncation, not that the
+      ambient admissible dimension equals~$3$.
+    \end{remark}
+
     \begin{theorem}[Hard $6 \to 3$ Veronese collapse]
       \label{thm:veronese}
       The symmetric squares $\{w_j \otimes w_j\}$ span a subspace of $\Sym(\Heff, \mathbb{C}) \cong \mathbb{C}^6$ of
@@ -284,14 +298,16 @@ Effective Dimension of the Admissible Covariance in $\End(\Heff)$}
 
     \begin{corollary}[$\Heff \simeq \su(2)$ is the spin-$1$ carrier]
       \label{cor:adjoint}
-      By O23/O27~\cite{Beau2026a27,Beau2026a31}, the admissible automorphism group of $\Heff$ is $\mathrm{SU}(2)$
+      By O23/O27~\cite{Beau2026a27,Beau2026a31} (conditionally on the supplied spinor carrier
+      of O23), the admissible automorphism group of $\Heff$ is $\mathrm{SU}(2)$
       acting on $\Heff \simeq \su(2)$ by the adjoint action; the adjoint is the three-dimensional irreducible (spin-$1$,
       vector) representation.
       Proposition~\ref{prop:so3} realises this action directly from the data: the $\mathfrak{so}(3)$ generators emerge
       as the commutators of the Veronese constraint forms, and the action is irreducible.
       Therefore $\reff = 3$ is the invariant of the spin-$1$ carrier $\Heff$, structural label: \emph{structural}
       (proved at the level of the data via Theorem~\ref{thm:veronese}\textendash{}Proposition~\ref{prop:so3}, and
-      consistent with the proved categorical statement of O27).
+      consistent with the categorical statement of O27, itself conditional on the supplied
+      carrier of O23).
     \end{corollary}
 
     \begin{proposition}[Structural origin of $\lambda_2 = \lambda_3$]

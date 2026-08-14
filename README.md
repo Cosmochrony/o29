@@ -163,7 +163,7 @@ The derivation is fully internal:
 Born–Infeld admissibility  
 $\to$ pair observable (**O16–O21**)  
 $\to$ projection locking (**O22**)  
-$\to$ quaternionic structure (**O23**)  
+$\to$ conditional rank-three carrier (**O23** Theorem 3.1, supplied spinor carrier)  
 $\to$ rank stability (**O24**)  
 $\to$ numerical validation (**O25**)  
 $\to$ quadratic structure (**O26**)  
